@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>uk.ac.cam.ch.wwmm</groupId>
-		<artifactId>wwmm-parent</artifactId>
-		<version>5-SNAPSHOT</version>
+		<groupId>org.contentmine</groupId>
+		<artifactId>cm-parent</artifactId>
+		<version>6</version>
 	</parent>
 
-	<groupId>org.xml-cml</groupId>
+	<groupId>org.contentmine</groupId>
 	<artifactId>euclid</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>2</version>
  	<packaging>jar</packaging>
 
     <properties>
@@ -18,9 +18,9 @@
     </properties>
 
 
-	<name>CML Euclid</name>
-	<description>A Java library for 2D and 3D geometric calculations</description>
-	<url>http://bitbucket.org/wwmm/euclid</url>
+	<name>Euclid</name>
+	<description>A Java library for 2D and 3D geometric calculations forked from WWMM</description>
+	<url>http://contentmine.org/euclid</url>
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -29,9 +29,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>https://bitbucket.org/wwmm/euclid/src</url>
-		<connection>scm:hg:http://bitbucket.org/wwmm/euclid</connection>
-		<developerConnection>scm:hg:https://bitbucket.org/wwmm/euclid</developerConnection>
+		<url>http://contentmine.org/euclid/src</url>
+		<connection>scm:hg:http://contentmine.org/euclid</connection>
+		<developerConnection>scm:hg:http://contentmine.org/euclid</developerConnection>
 	</scm>
 	<developers>
 		<developer>
@@ -40,7 +40,8 @@
 		</developer>
 	</developers>
 
-	<inceptionYear>1994</inceptionYear>
+	<inceptionYear>1994-2017</inceptionYear>
+	<!--
 	<mailingLists>
 		<mailingList>
 			<name>cml-discuss</name>
@@ -52,15 +53,18 @@
       </archive>
 		</mailingList>
 	</mailingLists>
+		-->
 
+		<!--
 	<ciManagement>
 		<system>hudson</system>
 		<url>https://hudson.ch.cam.ac.uk/job/euclid</url>
 	</ciManagement>
+			-->
 
 	<organization>
 		<name>Peter Murray-Rust</name>
-		<url>http://wwmm.ch.cam.ac.uk/blogs/murrayrust/ </url>
+		<url>http://contentmine.org </url>
 	</organization>
 
 	<build>
@@ -83,7 +87,7 @@
 						<haltOnFailure>false</haltOnFailure>
 						<regexes>
 							<regex>
-								<pattern>org.xmlcml.*</pattern>
+								<pattern>org.contentmine.*</pattern>
 								<branchRate>80</branchRate>
 								<lineRate>80</lineRate>
 							</regex>
@@ -125,11 +129,6 @@
 	</build>
 <!-- remove <repositories> for releases to central -->
 	<repositories>
-		<repository>
-			<id>ucc-repo</id>
-			<name>UCC Repository</name>
-			<url>https://maven.ch.cam.ac.uk/m2repo</url>
-		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>

@@ -89,7 +89,7 @@ public class RedBlackTree<T> implements Iterable<T> {
 	 *         respectively.
 	 */
 	private int compare(T val1, T val2) {
-		return comparator == null ? ((Comparable) val1).compareTo(val2)
+		return comparator == null ? ((Comparable<T>) val1).compareTo(val2)
 				: comparator.compare(val1, val2);
 	}
 

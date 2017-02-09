@@ -27,7 +27,10 @@ import java.io.OutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
+import org.xmlcml.euclid.Util;
 
 import nu.xom.Attribute;
 import nu.xom.Builder;
@@ -43,11 +46,6 @@ import nu.xom.Serializer;
 import nu.xom.Text;
 import nu.xom.XPathContext;
 import nu.xom.canonical.Canonicalizer;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.xmlcml.euclid.Util;
 
 /**
  * 

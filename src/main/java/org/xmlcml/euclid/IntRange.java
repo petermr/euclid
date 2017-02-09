@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.xmlcml.euclid.util.MultisetUtil;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multiset;

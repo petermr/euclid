@@ -129,7 +129,7 @@ public class Interval<T extends Comparable<T>> implements
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Interval other = (Interval) obj;
+		Interval<T> other = (Interval<T>) obj;
 		if (high == null) {
 			if (other.high != null)
 				return false;

@@ -3,11 +3,9 @@ package org.xmlcml.euclid.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xmlcml.euclid.IntRange;
 import org.xmlcml.xml.XMLUtil;
 
 import com.google.common.collect.ImmutableSortedMultiset;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import com.google.common.collect.Multisets;

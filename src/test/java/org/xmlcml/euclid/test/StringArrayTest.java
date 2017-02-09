@@ -22,7 +22,7 @@ public class StringArrayTest {
 		String[] strings = {"a", "b", "c",};
 		List<String> stringList = Arrays.asList(strings);
 		Assert.assertEquals("stringList", 3, stringList.size());	
-		Set stringSet = new HashSet<String>();
+		Set<String> stringSet = new HashSet<String>();
 		stringSet.addAll(stringList);
 		Assert.assertEquals("set", 3, stringSet.size());
 	}
@@ -32,7 +32,7 @@ public class StringArrayTest {
 		String[] strings = {"a", "a", "c",};
 		List<String> stringList = Arrays.asList(strings);
 		Assert.assertEquals("stringList", 3, stringList.size());	
-		Set stringSet = new HashSet<String>();
+		Set<String> stringSet = new HashSet<String>();
 		stringSet.addAll(stringList);
 		Assert.assertEquals("set", 2, stringSet.size());
 	}
@@ -43,7 +43,7 @@ public class StringArrayTest {
 		String[] strings = {"a", "a", "a",};
 		List<String> stringList = Arrays.asList(strings);
 		Assert.assertEquals("stringList", 3, stringList.size());	
-		Set stringSet = new HashSet<String>();
+		Set<String> stringSet = new HashSet<String>();
 		stringSet.addAll(stringList);
 		Assert.assertEquals("set", 1, stringSet.size());
 	}

@@ -43,8 +43,7 @@ public class AttributeFactory implements STMLConstants {
 
 	
 	public STMLAttribute getAttribute(String name, String extent) {
-		if (false) {
-		} else if (DELIMITER.equals(name) && ARRAY.equals(extent)) {
+		if (DELIMITER.equals(name) && ARRAY.equals(extent)) {
 			return new DelimiterAttribute(name);
 //		} else if (SIZE.equals(name) && ARRAY.equals(extent)) {
 //			return new SizeAttribute(name);

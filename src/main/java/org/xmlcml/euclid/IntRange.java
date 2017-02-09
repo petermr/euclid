@@ -462,7 +462,6 @@ public class IntRange implements EuclidConstants, Comparable<IntRange> {
 }
 class IntRangeComparator implements Comparator<IntRange>{
 
-	@Override
 	public int compare(IntRange o1, IntRange o2) {
 		if (o1 == null || o2 == null) return -1;
 		return o1.getMin() - o2.getMin();

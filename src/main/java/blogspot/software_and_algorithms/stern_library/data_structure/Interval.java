@@ -66,7 +66,7 @@ public class Interval<T extends Comparable<T>> implements
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+//	@Override
 	public int compareTo(Interval<T> o) {
 		int result = low.compareTo(o.low);
 		if (result == 0) {

@@ -468,18 +468,18 @@ public class RedBlackTree<T> implements Iterable<T> {
 	 * 
 	 * @return an Iterator over the elements of this tree.
 	 */
-	@Override
+//	@Override
 	public Iterator<T> iterator() {
 		return new Iterator<T>() {
 			private Node<T> cursor = getFirstNode();
 			private T lastReturn;
 
-			@Override
+//			@Override
 			public boolean hasNext() {
 				return cursor != null;
 			}
 
-			@Override
+//			@Override
 			public T next() {
 				if (cursor == null) {
 					throw new NoSuchElementException();
@@ -489,7 +489,7 @@ public class RedBlackTree<T> implements Iterable<T> {
 				return lastReturn;
 			}
 
-			@Override
+//			@Override
 			public void remove() {
 				if (lastReturn == null) {
 					throw new NoSuchElementException();

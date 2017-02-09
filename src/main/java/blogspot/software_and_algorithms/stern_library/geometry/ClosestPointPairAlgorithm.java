@@ -63,7 +63,7 @@ public class ClosestPointPairAlgorithm {
 		}
 		pointsOrderedByXCoordinate = new ArrayList<Point2D>(points);
 		Collections.sort(pointsOrderedByXCoordinate, new Comparator<Point2D>() {
-			@Override
+//			@Override
 			public int compare(Point2D o1, Point2D o2) {
 				double delta = o1.getX() - o2.getX();
 				if (delta == 0.0) {
@@ -74,7 +74,7 @@ public class ClosestPointPairAlgorithm {
 		});
 		pointsOrderedByYCoordinate = new ArrayList<Point2D>(points);
 		Collections.sort(pointsOrderedByYCoordinate, new Comparator<Point2D>() {
-			@Override
+//			@Override
 			public int compare(Point2D o1, Point2D o2) {
 				double delta = o1.getY() - o2.getY();
 				if (delta == 0.0) {

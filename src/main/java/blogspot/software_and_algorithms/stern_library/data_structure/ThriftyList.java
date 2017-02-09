@@ -164,7 +164,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public void add(int index, T item) {
 		if (0 > index || index > size) {
 			throw new IndexOutOfBoundsException();
@@ -190,7 +190,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean add(T item) {
 		CircularListInternal<T> sublist = sublists.get(tailSublistIndex);
 		if (sublist.isFull()) {
@@ -211,7 +211,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public void addFirst(T item) {
 		CircularListInternal<T> sublist = sublists.get(headSublistIndex);
 		if (sublist.isFull()) {
@@ -277,7 +277,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public void addLast(T item) {
 		add(item);
 	}
@@ -362,7 +362,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public void clear() {
 		sublists = new FixedListInternal<CircularListInternal<T>>(4);
 		sublists.addTail(new CircularListInternal<T>(2));
@@ -383,7 +383,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * Clone this list.
 	 */
-	@Override
+	//@Override
 	public Object clone() {
 		try {
 			ThriftyList<T> result = (ThriftyList<T>) super.clone();
@@ -403,7 +403,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean contains(Object o) {
 		return indexOf(o) != -1;
 	}
@@ -411,7 +411,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public Iterator<T> descendingIterator() {
 		return new ReverseIter(size - 1);
 	}
@@ -419,7 +419,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T element() {
 		return getFirst();
 	}
@@ -427,7 +427,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T get(int index) {
 		if (0 > index || index >= size) {
 			throw new IndexOutOfBoundsException();
@@ -454,7 +454,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T getFirst() {
 		if (size == 0) {
 			throw new NoSuchElementException();
@@ -465,7 +465,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T getLast() {
 		if (size == 0) {
 			throw new NoSuchElementException();
@@ -531,7 +531,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public int indexOf(Object o) {
 		int total = 0;
 		for (int j = headSublistIndex; j <= tailSublistIndex; j++) {
@@ -548,7 +548,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean isEmpty() {
 		return size == 0;
 	}
@@ -556,7 +556,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public Iterator<T> iterator() {
 		return new Iter(0);
 	}
@@ -564,7 +564,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public int lastIndexOf(Object o) {
 		int total = 0;
 		for (int j = tailSublistIndex; j >= headSublistIndex; j--) {
@@ -581,7 +581,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public ListIterator<T> listIterator() {
 		return listIterator(0);
 	}
@@ -589,7 +589,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public ListIterator<T> listIterator(int index) {
 		if (0 > index || index > size) {
 			throw new IndexOutOfBoundsException();
@@ -645,7 +645,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean offer(T e) {
 		return offerLast(e);
 	}
@@ -653,7 +653,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean offerFirst(T e) {
 		addFirst(e);
 		return true;
@@ -662,7 +662,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean offerLast(T e) {
 		add(e);
 		return true;
@@ -671,7 +671,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T peek() {
 		return peekFirst();
 	}
@@ -679,7 +679,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T peekFirst() {
 		if (size == 0) {
 			return null;
@@ -690,7 +690,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T peekLast() {
 		if (size == 0) {
 			return null;
@@ -701,7 +701,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T poll() {
 		return pollFirst();
 	}
@@ -709,7 +709,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T pollFirst() {
 		if (size == 0) {
 			return null;
@@ -720,7 +720,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T pollLast() {
 		if (size == 0) {
 			return null;
@@ -731,7 +731,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T pop() {
 		return removeFirst();
 	}
@@ -739,7 +739,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public void push(T e) {
 		addFirst(e);
 	}
@@ -759,7 +759,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T remove() {
 		return removeFirst();
 	}
@@ -767,7 +767,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T remove(int index) {
 		if (0 > index || index >= size) {
 			throw new IndexOutOfBoundsException();
@@ -794,7 +794,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T removeFirst() {
 		if (size == 0) {
 			throw new NoSuchElementException();
@@ -805,7 +805,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean removeFirstOccurrence(Object o) {
 		int index = indexOf(o);
 		if (index == -1) {
@@ -868,7 +868,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T removeLast() {
 		if (size == 0) {
 			throw new NoSuchElementException();
@@ -880,7 +880,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public boolean removeLastOccurrence(Object o) {
 		int index = lastIndexOf(o);
 		if (index == -1) {
@@ -893,7 +893,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T set(int index, T item) {
 		if (0 > index || index >= size) {
 			throw new IndexOutOfBoundsException();
@@ -982,7 +982,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public int size() {
 		return size;
 	}
@@ -1038,7 +1038,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public T[] toArray() {
 		return (T[]) toArray(null);
 	}
@@ -1046,7 +1046,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public <U> U[] toArray(U[] target) {
 		if (target == null || target.length < size) {
 			target = (U[]) new Object[size];
@@ -1066,7 +1066,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	//@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[");
@@ -1113,7 +1113,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void add(int index, T item) {
 			assert 0 <= index && index <= size;
 			assert size < capacity();
@@ -1169,7 +1169,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addAll(ListInternal<T> source) {
 			addSome(source, 0, source.size());
 		}
@@ -1177,7 +1177,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addHead(T item) {
 			assert size < capacity();
 
@@ -1189,7 +1189,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addSome(ListInternal<T> source, int index, int count) {
 			assert size + count <= capacity();
 
@@ -1208,7 +1208,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addTail(T item) {
 			assert size < capacity();
 
@@ -1219,7 +1219,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int calculateFreeCapacity() {
 			return array.length - size;
 		}
@@ -1227,7 +1227,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int capacity() {
 			return array.length;
 		}
@@ -1235,7 +1235,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void clear() {
 			Arrays.fill(array, null);
 			head = size = 0;
@@ -1244,7 +1244,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * Clone this list.
 		 */
-		@Override
+		//@Override
 		public Object clone() {
 			try {
 				CircularListInternal<T> result = (CircularListInternal<T>) super
@@ -1259,7 +1259,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void fill(T[] target, int targetIndex, int index, int count) {
 			assert (target.length - targetIndex) >= count;
 			assert count <= size;
@@ -1282,7 +1282,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T get(int index) {
 			assert 0 <= index && index < size;
 
@@ -1292,7 +1292,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T getHead() {
 			assert size > 0;
 
@@ -1302,7 +1302,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T getTail() {
 			assert size > 0;
 
@@ -1312,7 +1312,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int indexOf(Object o) {
 			if (o == null) {
 				for (int j = 0; j < size; j++) {
@@ -1333,7 +1333,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean isEmpty() {
 			return size == 0;
 		}
@@ -1341,7 +1341,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean isFull() {
 			return size == array.length;
 		}
@@ -1349,7 +1349,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int lastIndexOf(Object o) {
 			if (o == null) {
 				for (int j = size - 1; j >= 0; j--) {
@@ -1370,7 +1370,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T remove(int index) {
 			assert 0 <= index && index < size;
 
@@ -1409,7 +1409,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T removeHead() {
 			assert size > 0;
 
@@ -1423,7 +1423,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T removeTail() {
 			assert size > 0;
 
@@ -1437,7 +1437,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T set(int index, T item) {
 			assert 0 <= index && index < size;
 
@@ -1450,7 +1450,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int size() {
 			return size;
 		}
@@ -1458,7 +1458,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder();
 			for (int j = 0; j < size; j++) {
@@ -1494,7 +1494,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void add(int index, T item) {
 			assert 0 <= index && index <= size;
 			assert size < capacity();
@@ -1506,7 +1506,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addAll(ListInternal<T> source) {
 			addSome(source, 0, source.size());
 		}
@@ -1514,7 +1514,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addHead(T item) {
 			assert size < capacity();
 			add(0, item);
@@ -1523,7 +1523,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addSome(ListInternal<T> source, int index, int count) {
 			assert size + count <= capacity();
 
@@ -1538,7 +1538,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void addTail(T item) {
 			assert size < capacity();
 
@@ -1548,7 +1548,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int calculateFreeCapacity() {
 			return array.length - size;
 		}
@@ -1556,7 +1556,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int capacity() {
 			return array.length;
 		}
@@ -1564,7 +1564,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void clear() {
 			Arrays.fill(array, null);
 			size = 0;
@@ -1573,7 +1573,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * Clone this list.
 		 */
-		@Override
+		//@Override
 		public Object clone() {
 			try {
 				FixedListInternal<T> result = (FixedListInternal<T>) super
@@ -1588,7 +1588,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void fill(T[] target, int targetIndex, int index, int count) {
 			assert (target.length - targetIndex) >= count;
 			assert count <= size;
@@ -1601,7 +1601,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T get(int index) {
 			assert 0 <= index && index < size;
 
@@ -1611,7 +1611,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T getHead() {
 			assert size > 0;
 
@@ -1621,7 +1621,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T getTail() {
 			assert size > 0;
 
@@ -1631,7 +1631,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int indexOf(Object o) {
 			if (o == null) {
 				for (int j = 0; j < size; j++) {
@@ -1652,7 +1652,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean isEmpty() {
 			return size == 0;
 		}
@@ -1660,7 +1660,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean isFull() {
 			return size == array.length;
 		}
@@ -1668,7 +1668,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int lastIndexOf(Object o) {
 			if (o == null) {
 				for (int j = size - 1; j >= 0; j--) {
@@ -1689,7 +1689,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T remove(int index) {
 			assert 0 <= index && index < size;
 
@@ -1703,7 +1703,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T removeHead() {
 			assert size > 0;
 
@@ -1713,7 +1713,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T removeTail() {
 			assert size > 0;
 
@@ -1723,7 +1723,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T set(int index, T item) {
 			assert 0 <= index && index < size;
 
@@ -1735,7 +1735,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int size() {
 			return size;
 		}
@@ -1743,7 +1743,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder();
 			for (int j = 0; j < size; j++) {
@@ -1762,7 +1762,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean hasNext() {
 			return index < size;
 		}
@@ -1770,7 +1770,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean hasPrevious() {
 			return index > 0;
 		}
@@ -1778,7 +1778,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int nextIndex() {
 			return index;
 		}
@@ -1786,7 +1786,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int previousIndex() {
 			return index - 1;
 		}
@@ -1794,7 +1794,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		protected void stepForward() {
 			currentIndex = index;
 			currentSublistIndex = sublistIndex;
@@ -1812,7 +1812,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		protected void stepReverse() {
 			index -= 1;
 			if (sublistOffset == 0 && sublistIndex > 0) {
@@ -1840,7 +1840,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void add(T item) {
 			addImpl(index, sublistIndex, sublistOffset, item);
 			cursor();
@@ -1870,7 +1870,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T next() {
 			if (!hasNext()) {
 				throw new NoSuchElementException();
@@ -1884,7 +1884,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public T previous() {
 			if (!hasPrevious()) {
 				throw new NoSuchElementException();
@@ -1897,7 +1897,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void remove() {
 			if (currentIndex == -1) {
 				throw new IllegalStateException();
@@ -1913,7 +1913,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public void set(T e) {
 			if (currentIndex == -1) {
 				throw new IllegalStateException();
@@ -2127,7 +2127,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean hasNext() {
 			return index >= 0;
 		}
@@ -2135,7 +2135,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public boolean hasPrevious() {
 			return index < size - 1;
 		}
@@ -2143,7 +2143,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int nextIndex() {
 			return index;
 		}
@@ -2151,7 +2151,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		public int previousIndex() {
 			return index + 1;
 		}
@@ -2159,7 +2159,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		protected void stepForward() {
 			currentIndex = index;
 			currentSublistIndex = sublistIndex;
@@ -2176,7 +2176,7 @@ public class ThriftyList<T> extends AbstractList<T> implements List<T>,
 		/**
 		 * {@inheritDoc}
 		 */
-		@Override
+		//@Override
 		protected void stepReverse() {
 			index += 1;
 			sublistOffset += 1;

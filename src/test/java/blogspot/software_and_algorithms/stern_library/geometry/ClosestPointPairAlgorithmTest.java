@@ -38,7 +38,7 @@ import org.junit.Test;
 public class ClosestPointPairAlgorithmTest {
 	private static Point2D[] sort(Point2D[] points) {
 		Arrays.sort(points, new Comparator<Point2D>() {
-			@Override
+//			@Override
 			public int compare(Point2D o1, Point2D o2) {
 				double d = o1.getX() - o2.getX();
 				if (d == 0) {

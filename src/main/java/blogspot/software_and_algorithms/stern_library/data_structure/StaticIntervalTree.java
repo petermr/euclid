@@ -118,7 +118,7 @@ public class StaticIntervalTree<U extends Comparable<U>, T extends Interval<U>> 
 	public void buildTree(Set<T> intervals) {
 		List<T> intervalList = new ArrayList<T>(intervals);
 		Collections.sort(intervalList, new Comparator<T>() {
-			@Override
+//			@Override
 			public int compare(T o1, T o2) {
 				return o1.getLow().compareTo(o2.getLow());
 			}
@@ -319,7 +319,7 @@ public class StaticIntervalTree<U extends Comparable<U>, T extends Interval<U>> 
 	protected static class Node<U extends Comparable<U>, T extends Interval<U>> {
 		private RedBlackTree<T> highOrderedContainingIntervals = new OrderLinkedRedBlackTree<T>(
 				new Comparator<T>() {
-					@Override
+//					@Override
 					public int compare(T o1, T o2) {
 						int result = o1.getHigh().compareTo(o2.getHigh());
 						if (result == 0) {
@@ -334,7 +334,7 @@ public class StaticIntervalTree<U extends Comparable<U>, T extends Interval<U>> 
 				});
 		private RedBlackTree<T> lowOrderedContainingIntervals = new OrderLinkedRedBlackTree<T>(
 				new Comparator<T>() {
-					@Override
+//					@Override
 					public int compare(T o1, T o2) {
 						int result = o1.getLow().compareTo(o2.getLow());
 						if (result == 0) {
@@ -345,7 +345,7 @@ public class StaticIntervalTree<U extends Comparable<U>, T extends Interval<U>> 
 				});
 		private RedBlackTree<T> highOrderedExcludingIntervals = new OrderLinkedRedBlackTree<T>(
 				new Comparator<T>() {
-					@Override
+//					@Override
 					public int compare(T o1, T o2) {
 						int result = o1.getHigh().compareTo(o2.getHigh());
 						if (result == 0) {
@@ -360,7 +360,7 @@ public class StaticIntervalTree<U extends Comparable<U>, T extends Interval<U>> 
 				});
 		private RedBlackTree<T> lowOrderedExcludingIntervals = new OrderLinkedRedBlackTree<T>(
 				new Comparator<T>() {
-					@Override
+//					@Override
 					public int compare(T o1, T o2) {
 						int result = o1.getLow().compareTo(o2.getLow());
 						if (result == 0) {

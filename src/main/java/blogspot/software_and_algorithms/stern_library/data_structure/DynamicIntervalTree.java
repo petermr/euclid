@@ -50,7 +50,7 @@ import blogspot.software_and_algorithms.stern_library.data_structure.RedBlackTre
 public class DynamicIntervalTree<U extends Comparable<U>, T extends Interval<U>> {
 	public RedBlackTree<T> binarySearchTree = new RedBlackTree<T>(
 			new Comparator<T>() {
-				@Override
+//				@Override
 				public int compare(T o1, T o2) {
 					int result = o1.getLow().compareTo(o2.getLow());
 					if (result == 0) {

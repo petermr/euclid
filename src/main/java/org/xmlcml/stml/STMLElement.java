@@ -124,7 +124,7 @@ public class STMLElement extends Element implements XMLConstants {
 		} else if (tag.equals(STMLScalar.TAG)) {
 			newElement = new STMLScalar();
 		} else {
-			System.err.println("unsupported cml element: "+tag);
+			LOG.error("unsupported cml element: "+tag);
 		}
 		if (newElement != null) {
 	        XMLUtil.copyAttributesFromTo(element, newElement);

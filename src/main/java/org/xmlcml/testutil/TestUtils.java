@@ -37,6 +37,7 @@ import nu.xom.ProcessingInstruction;
 import nu.xom.Text;
 import nu.xom.tests.XOMTestCase;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -79,8 +80,10 @@ import org.xmlcml.xml.XMLUtil;
  */
 public final class TestUtils implements STMLConstants {
 
-	/** logger */
-	private final static Logger logger = Logger.getLogger(TestUtils.class);
+	private static final Logger LOG = Logger.getLogger(TestUtils.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
 
 	public static final String OUTPUT_DIR_NAME = "target/test-outputs";
 
@@ -126,7 +129,7 @@ public final class TestUtils implements STMLConstants {
 		try {
 			assertEqualsIncludingFloat(message, refNode, testNode, eps);
 		} catch (AssertionError e) {
-			logger.warn(e);
+			LOG.warn(e);
 			reportXMLDiffInFull(message, e.getMessage(), refNode, testNode);
 		}
 	}
@@ -1420,7 +1423,7 @@ public final class TestUtils implements STMLConstants {
 			element = XMLUtil.parseXML(s);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("ERROR " + e + e.getMessage() + "..."
+			LOG.error("ERROR " + e + e.getMessage() + "..."
 					+ s.substring(0, Math.min(100, s.length())));
 			Util.BUG(e);
 		}

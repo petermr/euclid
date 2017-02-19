@@ -23,6 +23,8 @@ import java.util.List;
 import nu.xom.Element;
 import nu.xom.Node;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.xmlcml.euclid.Util;
 import org.xmlcml.xml.XMLConstants;
 import org.xmlcml.xml.XMLUtil;
@@ -39,6 +41,11 @@ import org.xmlcml.xml.XMLUtil;
  * 
  */
 public class STMLType implements XMLConstants {
+
+	private static final Logger LOG = Logger.getLogger(STMLType.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
 
     /** dewisott */
 	public final static String NO_BASE = "Cannot find base: ";
@@ -185,7 +192,7 @@ public class STMLType implements XMLConstants {
 		if (restrictions.size() == 1) {
 			restriction = (Element) restrictions.get(0);
 		} else if (restrictions.size() > 1) {
-			System.err.println("More than one restriction");
+			LOG.error("More than one restriction");
 			XMLUtil.debug(simpleType, "CMLTYPE");
 		}
 		return restriction;
@@ -234,7 +241,7 @@ public class STMLType implements XMLConstants {
 			}
 			base = baseS;
 		} else if (lists.size() > 1) {
-			System.err.println("More than one list");
+			LOG.error("More than one list");
 			XMLUtil.debug(simpleType, "SIMPLE2");
 		}
 		return list;

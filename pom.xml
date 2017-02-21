@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
 <parent>
-	<groupId>org.contentmine</groupId>
-	<artifactId>cm-parent</artifactId>
-	<version>7.0.3</version>
+    <groupId>org.contentmine</groupId>
+    <artifactId>cm-parent</artifactId>
+    <version>7.0.3</version>
 </parent>
 
-	<groupId>org.contentmine</groupId>
-	<artifactId>euclid</artifactId>
-	<version>2.0.2</version>
+    <groupId>org.contentmine</groupId>
+    <artifactId>euclid</artifactId>
+    <version>2.0.3</version>
 
     <properties>
        <guava.version>18.0</guava.version>
@@ -18,118 +18,118 @@
     </properties>
 
 
-	<name>Euclid</name>
-	<description>A Java library for 2D and 3D geometric calculations forked from WWMM</description>
-	<url>http://contentmine.org/euclid</url>
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<developers>
-		<developer>
-			<id>pm286</id>
-			<name>Peter Murray-Rust</name>
-		</developer>
-	</developers>
+    <name>Euclid</name>
+    <description>A Java library for 2D and 3D geometric calculations forked from WWMM</description>
+    <url>http://contentmine.org/euclid</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>pm286</id>
+            <name>Peter Murray-Rust</name>
+        </developer>
+    </developers>
 
-	<inceptionYear>1994-2017</inceptionYear>
+    <inceptionYear>1994-2017</inceptionYear>
 
-	<organization>
-		<name>Peter Murray-Rust</name>
-		<url>http://contentmine.org </url>
-	</organization>
+    <organization>
+        <name>Peter Murray-Rust</name>
+        <url>http://contentmine.org </url>
+    </organization>
 
-	<build>
-		<plugins>
-		</plugins>
-	</build>
-	
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<!--
-			<scope>test</scope>
-			-->
-		</dependency>
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <!--
+            <scope>test</scope>
+            -->
+        </dependency>
 
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.0.1</version>
-		</dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.0.1</version>
+        </dependency>
 
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math</artifactId>
-			<version>2.2</version>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math</artifactId>
+            <version>2.2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>1.6.2</version>
-		</dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>1.6.2</version>
+        </dependency>
 
-       	<dependency>
-			<groupId>xom</groupId>
-			<artifactId>xom</artifactId>
-			<version>1.2.5</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
+           <dependency>
+            <groupId>xom</groupId>
+            <artifactId>xom</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 <!--
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<configuration>
-							<descriptorRefs>
-								<descriptorRef>src</descriptorRef>
-							</descriptorRefs>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>src</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 -->
-	<reporting>
-		<plugins>
+    <reporting>
+        <plugins>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
 
-		</plugins>
-	</reporting>
+        </plugins>
+    </reporting>
 
-	<repositories>
+    <repositories>
     <repository>
         <id>cm-pom</id>
         <url>https://raw.github.com/ContentMine/cm-pom/mvn-repo/</url>
@@ -138,6 +138,6 @@
             <updatePolicy>always</updatePolicy>
         </snapshots>
     </repository>
-	</repositories>
+    </repositories>
 
 </project>

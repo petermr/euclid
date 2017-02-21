@@ -176,9 +176,27 @@ public class IntRangeArray implements Iterable<IntRange> {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
 		for (IntRange range : rangeList) {
-			sb.append(range.toString());
+			sb.append(String.valueOf(range));
 		}
 		sb.append("]");
 		return sb.toString();
+	}
+
+	public void set(int i, IntRange intRange) {
+		ensureCapacity(i + 1);
+		rangeList.set(i, intRange);
+	}
+
+	/** ensure total size of list is >= cap
+	 * fill with null if necessary
+	 * @param cap
+	 */
+	private void ensureCapacity(int cap) {
+		int currentSize = rangeList.size();
+		if (cap >= currentSize) {
+			for (int i = currentSize; i < cap; i++) {
+				rangeList.add(null);
+			}
+		}
 	}
 }

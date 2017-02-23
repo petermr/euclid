@@ -16,14 +16,14 @@
 
 package org.xmlcml.euclid.test;
 
-import static org.xmlcml.euclid.EC.EPS;
-import static org.xmlcml.euclid.EC.S_EMPTY;
-import static org.xmlcml.euclid.EC.S_RBRAK;
+import static org.xmlcml.euclid.EuclidConstants.EPS;
+import static org.xmlcml.euclid.EuclidConstants.S_EMPTY;
+import static org.xmlcml.euclid.EuclidConstants.S_RBRAK;
 import static org.xmlcml.euclid.test.EuclidTestBase.getAssertFormat;
-import junit.framework.Assert;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xmlcml.euclid.Int;

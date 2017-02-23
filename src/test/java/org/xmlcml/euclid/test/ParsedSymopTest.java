@@ -1,8 +1,8 @@
 package org.xmlcml.euclid.test;
 
-import junit.framework.Assert;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 import org.xmlcml.euclid.ParsedSymop;
 import org.xmlcml.euclid.Transform3;

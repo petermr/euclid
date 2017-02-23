@@ -1152,7 +1152,8 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
      * @return value
      */
     public double getMax() throws ArrayIndexOutOfBoundsException {
-        return array[indexOfLargestElement()];
+    	int idx = indexOfLargestElement();
+        return idx == -1 ? null : array[idx];
     }
     /**
      * value of smallest element.
@@ -1162,7 +1163,8 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
      * @return index
      */
     public double smallestElement() throws ArrayIndexOutOfBoundsException {
-        return array[indexOfSmallestElement()];
+    	int idx = indexOfSmallestElement();
+        return idx == -1 ? null : array[idx];
     }
     /**
      * value of smallest element. synonym for smallestElement();

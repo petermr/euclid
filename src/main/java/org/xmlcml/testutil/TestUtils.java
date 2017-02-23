@@ -25,22 +25,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import junit.framework.AssertionFailedError;
-import junit.framework.ComparisonFailure;
-import nu.xom.Attribute;
-import nu.xom.Builder;
-import nu.xom.Comment;
-import nu.xom.Element;
-import nu.xom.Elements;
-import nu.xom.Node;
-import nu.xom.ProcessingInstruction;
-import nu.xom.Text;
-import nu.xom.tests.XOMTestCase;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.junit.Assert;
+import org.junit.ComparisonFailure;
 import org.xmlcml.euclid.EC;
 import org.xmlcml.euclid.EuclidRuntimeException;
 import org.xmlcml.euclid.IntArray;
@@ -67,6 +56,17 @@ import org.xmlcml.euclid.Vector3;
 import org.xmlcml.stml.STMLConstants;
 import org.xmlcml.stml.STMLElement;
 import org.xmlcml.xml.XMLUtil;
+
+import junit.framework.AssertionFailedError;
+import nu.xom.Attribute;
+import nu.xom.Builder;
+import nu.xom.Comment;
+import nu.xom.Element;
+import nu.xom.Elements;
+import nu.xom.Node;
+import nu.xom.ProcessingInstruction;
+import nu.xom.Text;
+import nu.xom.tests.XOMTestCase;
 
 /**
  * 
@@ -1185,7 +1185,7 @@ public final class TestUtils implements STMLConstants {
 			XOMTestCase.assertEquals(message, refNode, testNode);
 		} catch (ComparisonFailure e) {
 			ee = e;
-		} catch (AssertionFailedError e) {
+		} catch (Error e) {
 			ee = e;
 		}
 		if (ee != null) {

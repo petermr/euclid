@@ -1,7 +1,6 @@
 package blogspot.software_and_algorithms.stern_library.data_structure;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 /* Copyright (c) 2012 Kevin L. Stern

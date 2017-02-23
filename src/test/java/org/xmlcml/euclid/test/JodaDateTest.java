@@ -18,10 +18,9 @@ package org.xmlcml.euclid.test;
 
 import java.util.Date;
 
-import junit.framework.Assert;
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.euclid.JodaDate;

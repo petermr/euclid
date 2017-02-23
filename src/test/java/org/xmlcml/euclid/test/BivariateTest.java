@@ -1,7 +1,7 @@
 package org.xmlcml.euclid.test;
 
-import junit.framework.Assert;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.xmlcml.euclid.Bivariate;
 import org.xmlcml.euclid.Real2Array;

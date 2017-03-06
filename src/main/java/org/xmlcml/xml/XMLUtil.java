@@ -279,7 +279,10 @@ public abstract class XMLUtil implements XMLConstants {
 		if (file.isDirectory()) {
 			file.mkdirs();
 		} else {
-			file.getParentFile().mkdirs();
+			File parent = file.getParentFile();
+			if (parent != null) {
+				parent.mkdirs();
+			}
 		}
 		debug(el, new FileOutputStream(file), indent);
 	}

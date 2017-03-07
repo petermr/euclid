@@ -602,6 +602,19 @@ public abstract class XMLUtil implements XMLConstants {
 		}
 	}
 
+	/** removes all elements with given xpath.
+	 * 
+	 * @param element
+	 * @param xpath
+	 */
+	public static void removeElementsByXPath(Element element, String xpath) {
+		List<Element> elements = XMLUtil.getQueryElements(element, xpath);
+		for (Element elem : elements) {
+			elem.detach();
+		}
+	}
+
+
 	/**
 	 * sets text content of element. Does not support mixed content.
 	 * 

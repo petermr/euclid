@@ -1362,6 +1362,5 @@ public abstract class XMLUtil implements XMLConstants {
 //			element.detach();
 //		}
 //	}
-	
 
 }

@@ -16,5 +16,6 @@ public class Fixtures {
 	public final static File TEST_RESOURCES = new File("src/test/resources");
 	public final static File TEST_DIR = new File(Fixtures.TEST_RESOURCES, "org/xmlcml");
 	public final static File FILES_DIR = new File(Fixtures.TEST_DIR, "files");
+	public final static File POM_DIR = new File(Fixtures.TEST_DIR, "pom");
 	public final static File TEST_PLOSONE_0115884_DIR = new File(Fixtures.FILES_DIR, "journal.pone.0115884");
 }

@@ -1343,5 +1343,12 @@ public abstract class XMLUtil implements XMLConstants {
 		}
 	}
 	
+	public void removeElementsByXPath(Element elem, String xpath) {
+		List<Element> elements = XMLUtil.getQueryElements(elem, xpath);
+		for (Element element : elements) {
+			element.detach();
+		}
+	}
+	
 
 }

@@ -8,7 +8,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
-import org.xmlcml.Fixtures;
+import org.xmlcml.EuclidTestFixtures;
 
 
 public class PomTest {
@@ -19,13 +19,13 @@ public class PomTest {
 
 	@Test
 	public void testCreatePom() {
-		File file = new File(Fixtures.POM_DIR, "euclid/pom.xml");
+		File file = new File(EuclidTestFixtures.POM_DIR, "euclid/pom.xml");
 		Pom pom = new Pom(file);
 	}
 
 	@Test
 	public void testCreateMvnProject() {
-		File file = new File(Fixtures.POM_DIR, "euclid/pom.xml");
+		File file = new File(EuclidTestFixtures.POM_DIR, "euclid/pom.xml");
 		Pom pom = new Pom(file);
 		MvnProject project = pom.getMvnProject();
 		Assert.assertEquals("org.contentmine/euclid/2.0.5", project.toString());
@@ -36,7 +36,7 @@ public class PomTest {
 
 	@Test
 	public void testGetParentPom() {
-		File file = new File(Fixtures.POM_DIR, "euclid/pom.xml");
+		File file = new File(EuclidTestFixtures.POM_DIR, "euclid/pom.xml");
 		Pom pom = new Pom(file);
 		MvnProject parent = pom.getParentPom();
 		Assert.assertEquals("org.contentmine/cm-parent/7.0.4", parent.toString());
@@ -44,7 +44,7 @@ public class PomTest {
 
 	@Test
 	public void testGetDependency() {
-		File file = new File(Fixtures.POM_DIR, "svg/pom.xml");
+		File file = new File(EuclidTestFixtures.POM_DIR, "svg/pom.xml");
 		Pom pom = new Pom(file);
 		List<MvnProject> dependencies = pom.getOrCreateDependencies();
 		Assert.assertEquals(2,  dependencies.size());
@@ -57,7 +57,7 @@ public class PomTest {
 	
 	@Test
 	public void testGetProperties() {
-		File file = new File(Fixtures.POM_DIR, "euclid/pom.xml");
+		File file = new File(EuclidTestFixtures.POM_DIR, "euclid/pom.xml");
 		Pom pom = new Pom(file);
 		Map<String, String> properties = pom.getOrCreateProperties();
 		Assert.assertEquals(2,  properties.size());
@@ -65,7 +65,7 @@ public class PomTest {
 
 	@Test
 	public void testGetProperty() {
-		File file = new File(Fixtures.POM_DIR, "euclid/pom.xml");
+		File file = new File(EuclidTestFixtures.POM_DIR, "euclid/pom.xml");
 		Pom pom = new Pom(file);
 		String value = pom.getValue("euclid.version");
 		Assert.assertEquals("euclid.version",  "2.0.5", value);

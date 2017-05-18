@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
+       <euclid.version>2.1.1</euclid.version>
        <guava.version>18.0</guava.version>
     </properties>
 
@@ -14,7 +15,7 @@
     
     <groupId>org.contentmine</groupId>
     <artifactId>euclid</artifactId>
-    <version>2.1.1</version>
+    <version>${euclid.version}</version>
     <name>Euclid</name>
     <description>A Java library for 2D and 3D geometric calculations forked from WWMM</description>
     <url>http://contentmine.org/euclid</url>

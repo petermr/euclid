@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-       <euclid.version>2.0.5</euclid.version>
+       <euclid.version>2.0.6</euclid.version>
        <guava.version>18.0</guava.version>
     </properties>
 

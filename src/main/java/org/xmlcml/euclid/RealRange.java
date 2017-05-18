@@ -561,5 +561,31 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
 	public boolean isLessThan(RealRange range) {
 		return range != null && getRange() < range.getRange();
 	}
+	
+	/**
+	 * scales this to range.
+	 * range.origin = range.min - this.toRange * this.min
+	 * @param range
+	 * @return
+	 */
+	public Double getConstantTo(RealRange range) {
+		return range == null ? null : range.getMin() - getScaleTo(range) * this.getMin();
+	}
+	
+	/**
+	 * uses bRange to transform x
+	 * aligns this.min with range.min and this.max with range.max and then transform x
+	 * into range 
+	 * 
+	 *  return getConstantTo(range) + x * range.getRange() / this.getRange()
+	 *  
+	 * @param range 
+	 * @param x
+	 * @return
+	 */
+	public double transformToRange(RealRange range, double x) {
+// uses	 getConstantTo(bRange) + x * getScaleTo(range);
+		return getConstantTo(range) + x * range.getRange() / this.getRange();
+	}
 
 }

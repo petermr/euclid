@@ -258,4 +258,20 @@ public class RealRangeTest {
 		Assert.assertEquals("int", "(1.0,2.0)", r.toString());
 	}
 
+	@Test
+	/** scale from one range to another
+	 * 
+	 */
+	public void testConvertScales() {
+		RealRange aRange = new RealRange(1,2);
+		RealRange bRange = new RealRange(3, 5);
+		double a2bScale = aRange.getScaleTo(bRange);
+		Assert.assertEquals("a2b", 2.0, a2bScale, 0.001);
+		double bConst = aRange.getConstantTo(bRange);
+		Assert.assertEquals("bConst", 1.0, bConst, 0.001);
+		double ax = 0.5;
+		double bx = bConst + ax * a2bScale;
+		Assert.assertEquals("bPred", 2.0, bx, 0.001);
+		bx = aRange.transformToRange(bRange, ax);
+	}
 }

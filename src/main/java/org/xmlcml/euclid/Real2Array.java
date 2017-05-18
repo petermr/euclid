@@ -132,6 +132,7 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 	}
 
     /**
+     * appends an xy coordinate
      * @param r2
      */
     public void add(Real2 r2) {
@@ -280,6 +281,22 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
     		xy.transformBy(t2);
     		this.setElement(i, xy);
     	}
+    }
+    
+
+    /**
+     * adds r2 to each element of the array.
+     * Changes this
+     * @param r2
+     * @return this
+     */
+    public Real2Array plusEquals(Real2 r2) {
+    	for (int i = 0;i < nelem; i++) {
+    		Real2 xy = this.get(i);
+    		xy = xy.plus(r2);
+    		this.setElement(i, xy);
+    	}
+    	return this;
     }
     
     /** round to decimal places.

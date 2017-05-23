@@ -31,11 +31,13 @@
 
     <build>
         <plugins>
+<!--
                <plugin>
                 <groupId>ch.elca.el4j.maven.plugins</groupId>
                 <artifactId>depgraph-maven-plugin</artifactId>
                 <version>3.1</version>
             </plugin>
+-->
         </plugins>
     </build>
     <dependencies>

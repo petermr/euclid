@@ -504,4 +504,45 @@ public class Real2Range implements EuclidConstants {
 			xrange.isLessThan(bbox.getXRange()) &&
 			yrange.isLessThan(bbox.getYRange()); 
 	}
+	
+	/** extend the end of range upper end in given direction
+	 * 
+	 * uses RealRange.extendUpperEndBy
+	 * 
+	 * @param direction
+	 * @param delta
+	 */
+	public void extendUpperEndBy(Direction direction, double delta) {
+		RealRange realRange = (Direction.HORIZONTAL.equals(direction) ? xrange : yrange);
+		realRange.extendUpperEndBy(delta);
+	}
+	
+	/** extend the end of range lower end in given direction
+	 * 
+	 * uses RealRange.extendLowerEndBy
+	 * 
+	 * @param direction
+	 * @param delta
+	 */
+	public void extendLowerEndBy(Direction direction, double delta) {
+		RealRange realRange = (Direction.HORIZONTAL.equals(direction) ? xrange : yrange);
+		realRange.extendLowerEndBy(delta);
+	}
+	
+	/** extend the end of range lower end in given direction
+	 * 
+	 * uses RealRange.extendLowerEndBy
+	 * uses RealRange.extendUpperEndBy
+	 * 
+	 * @param direction
+	 * @param lowerDelta
+	 * @param upperDelta
+	 */
+	public void extendBothEndsBy(Direction direction, double lowerDelta, double upperDelta) {
+		RealRange realRange = (Direction.HORIZONTAL.equals(direction) ? xrange : yrange);
+		realRange.extendLowerEndBy(lowerDelta);
+		realRange.extendUpperEndBy(upperDelta);
+	}
+	
+	
 }

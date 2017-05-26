@@ -23,6 +23,7 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.euclid.ArrayBase.Trim;
 import org.xmlcml.euclid.EuclidConstants;
@@ -33,6 +34,8 @@ import org.xmlcml.euclid.RealArray;
 import org.xmlcml.euclid.RealArray.Filter;
 import org.xmlcml.euclid.RealArray.Monotonicity;
 import org.xmlcml.euclid.RealRange;
+
+import com.google.common.collect.Multiset;
 
 /**
  * test RealArray.
@@ -1215,5 +1218,32 @@ public class RealArrayTest {
 		RealArray ra = new RealArray(new double[]{1., 3., 4.});
 		RealArray rb = new RealArray(new double[]{2., 5., 3.});
 		Assert.assertEquals("sum", 29., ra.sumProductOfAllElements(rb), 0.001);
+	}
+	
+	@Test
+	@Ignore // create test with doubles and format
+	public void testCreateDoubleDifferenceMultiset() {
+		RealArray realArray = new RealArray(new double[]{12.0, 23.0, 34.0, 45.0, 56.0});
+		Multiset<Integer> integerDiffSet = realArray.createIntegerDifferenceMultiset();
+		Assert.assertEquals("int diff set",  "[11 x 4]", integerDiffSet.toString());
+		realArray = new RealArray(new double[]{12.1, 23.2, 34.3, 46.5, 57.6});
+		integerDiffSet = realArray.createIntegerDifferenceMultiset();
+		Assert.assertEquals("int diff set",  "[11 x 3, 12]", integerDiffSet.toString());
+		realArray = new RealArray(new double[]{1.2, 2.3, 3.4, 4.6, 5.7});
+		integerDiffSet = realArray.createIntegerDifferenceMultiset();
+		Assert.assertEquals("int diff set",  "[1 x 4]", integerDiffSet.toString());
+	}
+	
+	@Test
+	public void testCreateIntegerDifferenceMultiset() {
+		RealArray realArray = new RealArray(new double[]{12.0, 23.0, 34.0, 45.0, 56.0});
+		Multiset<Integer> integerDiffSet = realArray.createIntegerDifferenceMultiset();
+		Assert.assertEquals("int diff set",  "[11 x 4]", integerDiffSet.toString());
+		realArray = new RealArray(new double[]{12.1, 23.2, 34.3, 46.5, 57.6});
+		integerDiffSet = realArray.createIntegerDifferenceMultiset();
+		Assert.assertEquals("int diff set",  "[11 x 3, 12]", integerDiffSet.toString());
+		realArray = new RealArray(new double[]{1.2, 2.3, 3.4, 4.6, 5.7});
+		integerDiffSet = realArray.createIntegerDifferenceMultiset();
+		Assert.assertEquals("int diff set",  "[1 x 4]", integerDiffSet.toString());
 	}
 }

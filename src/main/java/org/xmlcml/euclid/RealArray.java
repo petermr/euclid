@@ -21,6 +21,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
+
 /**
  * array of doubles
  * 
@@ -2168,6 +2171,51 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 	 */
 	public double getLast() {
 		return nelem == 0 ? Double.NaN : this.get(nelem - 1);
+	}
+	
+	/**
+	 *  create a set of double differences between neighbouring elements.
+	 *  Probably most useful when array is already sorted.
+	 *  
+	 *  Example:
+	 *  realArray = (1.2 2.3 3.4 4.6 5.7)
+	 *  set will be
+	 *  [1.1 x 3, 1.2]
+	 *  
+	 * @return
+	 */
+	public Multiset<Double> createDoubleDifferenceMultiset(int nplaces) {
+		Multiset<Double> deltaSet = HashMultiset.create();
+		if (this != null) {
+			RealArray deltaArray = calculateDifferences();
+			deltaArray.format(nplaces);
+			for (int i = 0; i < deltaArray.size(); i++) {
+				deltaSet.add(new Double(deltaArray.elementAt(i)));
+			}
+		}
+		return deltaSet;
+	}
+	
+	/**
+	 *  create a set of integer differences between neighbouring elements.
+	 *  Probably most useful when array is already sorted.
+	 *  
+	 *  Example:
+	 *  realArray = (1.2 2.3 3.4 4.6 5.7)
+	 *  set will be
+	 *  [1 x 4]
+	 *  
+	 * @return
+	 */
+	public Multiset<Integer> createIntegerDifferenceMultiset() {
+		Multiset<Integer> deltaSet = HashMultiset.create();
+		if (this != null) {
+			IntArray deltaArray = calculateDifferences().createIntArray();
+			for (int i = 0; i < deltaArray.size(); i++) {
+				deltaSet.add(new Integer((int)deltaArray.elementAt(i)));
+			}
+		}
+		return deltaSet;
 	}
 }
 class DoubleIterator implements Iterator<Double> {

@@ -2217,6 +2217,18 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		}
 		return deltaSet;
 	}
+	/** does the array contain one or more Doubel.NaN.
+	 * 
+	 * @return
+	 */
+	public boolean hasNaN() {
+		for (int i = 0; i < nelem; i++) {
+			if (Double.isNaN(array[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
 class DoubleIterator implements Iterator<Double> {
 

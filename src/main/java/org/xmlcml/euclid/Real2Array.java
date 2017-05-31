@@ -305,11 +305,13 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
      * @return this
      */
     public Real2Array format(int places) {
-    	double[] xarray = xarr.getArray();
-    	double[] yarray = yarr.getArray();
-    	for (int i = 0; i < nelem; i++) {
-    		xarray[i] = Util.format(xarray[i], places);
-    		yarray[i] = Util.format(yarray[i], places);
+    	if (xarr != null && yarr != null) {
+	    	double[] xarray = xarr.getArray();
+	    	double[] yarray = yarr.getArray();
+	    	for (int i = 0; i < nelem; i++) {
+	    		xarray[i] = Util.format(xarray[i], places);
+	    		yarray[i] = Util.format(yarray[i], places);
+	    	}
     	}
     	return this;
     }

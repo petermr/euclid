@@ -2186,15 +2186,30 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 	 */
 	public Multiset<Double> createDoubleDifferenceMultiset(int nplaces) {
 		Multiset<Double> deltaSet = HashMultiset.create();
-		if (this != null) {
-			RealArray deltaArray = calculateDifferences();
-			deltaArray.format(nplaces);
-			for (int i = 0; i < deltaArray.size(); i++) {
-				deltaSet.add(new Double(deltaArray.elementAt(i)));
-			}
+		RealArray deltaArray = calculateDifferences();
+		deltaArray.format(nplaces);
+		for (int i = 0; i < deltaArray.size(); i++) {
+			deltaSet.add(new Double(deltaArray.elementAt(i)));
 		}
 		return deltaSet;
 	}
+
+	/** create a set of all values as formatted Doubles.
+	 * 
+	 * @param nplaces number of places to format
+	 * @return the Multiset of values
+	 */
+	
+	public Multiset<Double> createDoubleMultiset(int nplaces) {
+		Multiset<Double> set = HashMultiset.create();
+		RealArray array = new RealArray(this);
+		array.format(nplaces);
+		for (int i = 0; i < array.size(); i++) {
+			set.add(new Double(array.elementAt(i)));
+		}
+		return set;
+	}
+
 	
 	/**
 	 *  create a set of integer differences between neighbouring elements.

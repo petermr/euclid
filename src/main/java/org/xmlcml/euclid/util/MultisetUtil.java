@@ -69,5 +69,19 @@ public class MultisetUtil {
 		return nodeValues;
 	}
 
+	public static Double getLowestValue(Multiset<Double> valueSet) {
+		Iterable<Multiset.Entry<Double>> values = MultisetUtil.getDoubleEntriesSortedByValue(valueSet);
+		Multiset.Entry<Double> entries = values.iterator().hasNext() ? (Multiset.Entry<Double>) values.iterator().next() : null;
+		Double value = (entries == null) ? null : entries.getElement();
+		return value;
+	}
+
+	public static Double getCommonestValue(Multiset<Double> valueSet) {
+		Iterable<Multiset.Entry<Double>> values = MultisetUtil.getDoubleEntriesSortedByCount(valueSet);
+		Multiset.Entry<Double> entries = values.iterator().hasNext() ? (Multiset.Entry<Double>) values.iterator().next() : null;
+		Double value = (entries == null) ? null : entries.getElement();
+		return value;
+	}
+
 
 }

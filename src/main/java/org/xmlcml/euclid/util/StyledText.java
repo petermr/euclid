@@ -39,12 +39,12 @@ public class StyledText {
 	public final static String BRAK0 = BRAK+"0;"; 
 	public final static String M = "m"; 
 	
-      public static String wrapBold(String string) {
-    	  return ESC + BRAK + SysoutStyle.BOLD.code + M + string + ESC + BRAK + SysoutStyle.RESET.code + M;
-      }
-      
-      public static String wrap(String string, SysoutStyle style) {
-    	  return ESC + BRAK + style.code + M + string + ESC + BRAK + SysoutStyle.RESET.code + M;
-    	  
-      }
+	public static String wrapBold(String string) {
+		return ESC + BRAK + SysoutStyle.BOLD.code + M + string + ESC + BRAK + SysoutStyle.RESET.code + M;
+	}
+	  
+	public static String wrap(String string, SysoutStyle style) {
+		return ESC + BRAK + style.code + M + string + ESC + BRAK + SysoutStyle.RESET.code + M;
+		  
+	}
 }

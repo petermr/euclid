@@ -83,5 +83,11 @@ public class MultisetUtil {
 		return value;
 	}
 
-
+	public static List<Entry<String>> createStringEntryList(Iterable<Entry<String>> iterable) {
+		List<Entry<String>> entries = new ArrayList<Entry<String>>();
+		for (Entry<String> entry : iterable) {
+			entries.add(entry);
+		}
+		return entries;
+	}
 }

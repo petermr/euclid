@@ -76,6 +76,12 @@ public class MultisetUtil {
 		return value;
 	}
 
+	public static Double getHighestValue(Multiset<Double> valueSet) {
+		Iterable<Multiset.Entry<Double>> values = MultisetUtil.getDoubleEntriesSortedByValue(valueSet);
+		List<Entry<Double>> entries = createDoubleEntryList(values);
+		return entries.size() == 0 ? null : entries.get(entries.size() - 1).getElement();
+	}
+
 	public static Double getCommonestValue(Multiset<Double> valueSet) {
 		Iterable<Multiset.Entry<Double>> values = MultisetUtil.getDoubleEntriesSortedByCount(valueSet);
 		Multiset.Entry<Double> entries = values.iterator().hasNext() ? (Multiset.Entry<Double>) values.iterator().next() : null;
@@ -86,6 +92,14 @@ public class MultisetUtil {
 	public static List<Entry<String>> createStringEntryList(Iterable<Entry<String>> iterable) {
 		List<Entry<String>> entries = new ArrayList<Entry<String>>();
 		for (Entry<String> entry : iterable) {
+			entries.add(entry);
+		}
+		return entries;
+	}
+	
+	public static List<Entry<Double>> createDoubleEntryList(Iterable<Entry<Double>> iterable) {
+		List<Entry<Double>> entries = new ArrayList<Entry<Double>>();
+		for (Entry<Double> entry : iterable) {
 			entries.add(entry);
 		}
 		return entries;

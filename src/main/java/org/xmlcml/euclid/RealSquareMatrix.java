@@ -16,6 +16,7 @@
 
 package org.xmlcml.euclid;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import org.apache.commons.math.linear.EigenDecompositionImpl;
@@ -856,6 +857,11 @@ public class RealSquareMatrix extends RealMatrix {
 }
 /* in separate class because jvc bombs on compiling this */
 class Diagonalise implements EuclidConstants {
+	private static final Logger LOG = Logger.getLogger(Diagonalise.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
+
     final static double ZERO = 0.0;
     final static double ONE = 1.0;
     final static double TWO = 2.0;
@@ -958,7 +964,7 @@ class Diagonalise implements EuclidConstants {
         // ivar3 = 0;
         // rvar1 = 0.0;
         /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-        RealSquareMatrix.LOG.info("O..." + order);
+        LOG.info("O..." + order);
         /* Function Body */
         if (order < 2) {
             throw new EuclidRuntimeException("order too small");
@@ -978,7 +984,7 @@ class Diagonalise implements EuclidConstants {
                 }
             }
         }
-        RealSquareMatrix.LOG.info("O " + order);
+        LOG.info("O " + order);
         /*----------------------------------------------------------------------- */
         /* compute initial and final norms (anorm and anormx) */
         anorm = ZERO;
@@ -1054,7 +1060,7 @@ class Diagonalise implements EuclidConstants {
                         /* test for l = second from last column */
                         // L270
                         if (l == (order - 1)) {
-                            RealSquareMatrix.LOG.info(S_LSQUARE + l + EC.S_SLASH + order
+                            LOG.info(S_LSQUARE + l + EC.S_SLASH + order
                                     + EC.S_RSQUARE);
                             break;
                         }
@@ -1063,7 +1069,7 @@ class Diagonalise implements EuclidConstants {
                         ++l;
                     }
                     // L290
-                    RealSquareMatrix.LOG.info(S_PLUS + l + EC.S_SLASH + ind);
+                    LOG.info(S_PLUS + l + EC.S_SLASH + ind);
                     if (ind != 1) {
                         break;
                     }
@@ -1071,7 +1077,7 @@ class Diagonalise implements EuclidConstants {
                     ind = 0;
                     // goto L90;
                 }
-                RealSquareMatrix.LOG.info("====================broke");
+                LOG.info("====================broke");
                 /* compare threshold with final norm */
                 // L310:
                 if (thr - anrmx <= ZERO) {
@@ -1121,7 +1127,7 @@ class Diagonalise implements EuclidConstants {
                 // illCond = new NPDMatrixException();
                 break;
             } else if (eigval[i] < range) {
-                RealSquareMatrix.LOG.info("SING");
+                LOG.info("SING");
                 // illCond = new SingMatrixException();
                 break;
             } else {

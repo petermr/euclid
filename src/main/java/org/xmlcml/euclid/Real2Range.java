@@ -18,6 +18,8 @@ package org.xmlcml.euclid;
 import java.awt.Dimension;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.xmlcml.euclid.Axis.Axis2;
 import org.xmlcml.euclid.RealRange.Direction;
 /**
@@ -31,7 +33,11 @@ import org.xmlcml.euclid.RealRange.Direction;
  * @author (C) P. Murray-Rust, 1996
  */
 public class Real2Range implements EuclidConstants {
-	
+	private static final Logger LOG = Logger.getLogger(Real2Range.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
+
 	public enum BoxDirection {
 		LEFT,
 		RIGHT,
@@ -540,8 +546,12 @@ public class Real2Range implements EuclidConstants {
 	 */
 	public void extendBothEndsBy(Direction direction, double lowerDelta, double upperDelta) {
 		RealRange realRange = (Direction.HORIZONTAL.equals(direction) ? xrange : yrange);
-		realRange.extendLowerEndBy(lowerDelta);
-		realRange.extendUpperEndBy(upperDelta);
+		if (realRange != null) {
+			realRange.extendLowerEndBy(lowerDelta);
+			realRange.extendUpperEndBy(upperDelta);
+		} else {
+			LOG.warn("null range");
+		}
 	}
 	
 	

@@ -1355,6 +1355,24 @@ public abstract class XMLUtil implements XMLConstants {
 			}
 		}
 	}
+
+	/** substitute all low-order non-xml chars by (char)127
+	 * 
+	 * @param txt
+	 * @return
+	 */
+	public static String removeNonXML(String txt) {
+		StringBuilder sb = new StringBuilder(txt);
+		for (int i = 0; i < sb.length(); i++) {
+			int ch = sb.codePointAt(i);
+			if (ch < 32 && ch != 9 && ch != 10 && ch != 13) {
+				sb.setCharAt(i, (char)127);
+			}
+		}
+		txt = sb.toString();
+		return txt;
+	}
+
 	
 //	public static void removeElementsByXPath(Element elem, String xpath) {
 //		List<Element> elements = XMLUtil.getQueryElements(elem, xpath);

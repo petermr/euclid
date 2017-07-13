@@ -15,6 +15,7 @@
  */
 
 package org.xmlcml.euclid;
+import java.awt.geom.Point2D;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -136,7 +137,10 @@ public class Real2 implements EuclidConstants {
         this.y = r.y;
     }
     
-    /**
+    public static Real2 createReal2(Point2D p) {
+    	return p == null ? null : new Real2(p.getX(), p.getY());
+	}
+	/**
      * swaps the x and y values
      */
     public void swap() {

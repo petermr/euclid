@@ -64,6 +64,7 @@ public class Angle {
          */
         SIGNED;
     }
+    public final static Angle ZERO = new Angle(0.0);
     /**
      * default is UNLIMITED
      */
@@ -78,9 +79,11 @@ public class Angle {
      * ALWAYS held as radians internally
      */
     double angle = 0.0;
+    
     /**
      * create default Angle default is (0.0)
      */
+    
     public Angle() {
     }
     /**

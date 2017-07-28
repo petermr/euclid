@@ -94,6 +94,7 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
         yarr = (RealArray) y.clone();
     }
 
+    
     /** create with RealArrays of pre-allocated size.
      * 
      * @param i
@@ -537,6 +538,8 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 		}
 		return points;
 	}
+	
+	
 	
 }
 class Real2Iterator implements Iterator<Real2> {

@@ -18,6 +18,7 @@ package org.xmlcml.euclid;
 
 import java.awt.geom.AffineTransform;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -48,7 +49,11 @@ import org.apache.log4j.Logger;
  * @author PMR 20 August 2003
  */
 public class Transform2 extends RealSquareMatrix {
-    final static Logger LOG = Logger.getLogger(Transform2.class.getName());
+	private static final Logger LOG = Logger.getLogger(Transform2.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
+
     /** type */
     public enum Type {
         /** */
@@ -561,6 +566,41 @@ public class Transform2 extends RealSquareMatrix {
     		ang = null;
     	}
     	return ang;
+    }
+
+    /** find point about which to rotate.
+     * 
+     * The combined rot-trans is:
+     * R(x-t) + t => x'
+     * Rx -Rt + t=> x'
+     * The (R,t) matrix is thus
+     * (Rx, -Rt+t) or (Rx, (-R+I)t)
+     * if Rt matrix is reported as (R t') 
+     * t =(I-R)^-1 t'
+     * 
+     * not optimal but at least checkable
+     * 
+     * @return
+     */
+    public Real2 getCentreOfRotation() {
+    	Real2 centre = null;
+    	Angle rotAngle = getAngleOfRotation();
+    	if (rotAngle != null) {
+    		// R
+    		RealSquareMatrix rotMat = getRotationMatrix();
+    		// I-R
+    		RealSquareMatrix unit = new RealSquareMatrix(RealSquareMatrix.diagonal(new RealArray(new double[]{1.0, 1.0})));
+    		rotMat = unit.subtract(rotMat);
+    		// (I-R)^-1
+    		rotMat.transpose();
+    		// t
+    		Real2 trans = getTranslation();
+    		RealArray transAsArray = new RealArray(new double[]{trans.x, trans.y});
+    		// (R+I)^-1.t
+    		RealArray centreAsArray = rotMat.multiply(transAsArray);
+    		centre = new Real2(centreAsArray.get(0), centreAsArray.get(1));
+    	}
+    	return centre;
     }
     
     /**

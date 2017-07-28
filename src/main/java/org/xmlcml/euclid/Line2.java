@@ -510,4 +510,17 @@ public class Line2 implements EuclidConstants {
 		return this.isParallelOrAntiParallelTo(YAXIS, eps);
 	}
 
+	/** creates a point at the centre of a square where this line is one of the sides.
+	 * find midpoint, and construct perpendicular line of l/2
+	 * 
+	 * Used an rotating a box (especially a page) so it remaind in the same region
+	 * @return
+	 */
+	public Real2 createSquarePoint() {
+		Real2 l2 = to.subtract(from).multiplyBy(0.5);
+		Real2 l2a = new Real2(l2.y, -l2.x);
+		Real2 p = from.plus(l2).plus(l2a);
+		return p;
+	}
+
 }

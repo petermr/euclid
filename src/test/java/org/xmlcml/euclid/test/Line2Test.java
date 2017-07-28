@@ -16,6 +16,8 @@
 
 package org.xmlcml.euclid.test;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +28,7 @@ import org.xmlcml.euclid.Real;
 import org.xmlcml.euclid.Real2;
 import org.xmlcml.euclid.Vector2;
 
+
 /**
  * test for Line2
  * 
@@ -33,6 +36,10 @@ import org.xmlcml.euclid.Vector2;
  * 
  */
 public class Line2Test {
+	private static final Logger LOG = Logger.getLogger(Line2Test.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
 
 	static double sqrt2 = Math.sqrt(2);
 	static double sqrt5 = Math.sqrt(5);
@@ -336,5 +343,14 @@ public class Line2Test {
 		// lower the tolerance
 		Assert.assertFalse("hor", line10d.isHorizontal(angleEps.multiplyBy(0.01)));
 		Assert.assertFalse("vert", line01d.isVertical(angleEps.multiplyBy(0.01)));
+	}
+	
+	@Test
+	public void testCreateSquarePoint() {
+		Real2 p0 = new Real2(1,2);
+		Real2 p1 = new Real2(11,8);
+		Real2 p01 = new Line2(p0, p1).createSquarePoint();
+		Real2 p01Test = new Real2((1.+11.)/2. + 3., (2.+8.)/2.-5.);
+		Real2Test.assertEquals("right", p01Test, p01, 0.001);
 	}
 }

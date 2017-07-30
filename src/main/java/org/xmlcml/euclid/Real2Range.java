@@ -21,6 +21,7 @@ import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.xmlcml.euclid.Axis.Axis2;
+import org.xmlcml.euclid.Real2Range.BoxDirection;
 import org.xmlcml.euclid.RealRange.Direction;
 /**
  * 2-D double limits Contains two RealRanges. Can therefore be used to describe
@@ -248,7 +249,7 @@ public class Real2Range implements EuclidConstants {
     /** gets lower left and upper right.
      * @return minx,miny ... maxx, maxy
      */
-    public Real2[] getCorners() {
+    public Real2[] getLLURCorners() {
     	Real2[] rr = null;
     	if (xrange != null && yrange != null) {
     		rr = new Real2[2];
@@ -553,6 +554,36 @@ public class Real2Range implements EuclidConstants {
 			LOG.warn("null range");
 		}
 	}
+
+	/** gets all 4 corners
+	 * start at minXMiny
+	 * do not use "clockwise" etc as depends on axes
+	 * @return minXMiny maxXMiny maxXMaxy minXMaxy corners
+	 */
+	public Real2[] getAllCornerPoints() {
+		Real2[] corners = new Real2[4];
+    	corners[0] = new Real2(xrange.getMin(), yrange.getMin());
+    	corners[1] = new Real2(xrange.getMax(), yrange.getMin());
+    	corners[2] = new Real2(xrange.getMax(), yrange.getMax());
+    	corners[3] = new Real2(xrange.getMin(), yrange.getMax());
+    	return corners;
+		
+	}
+	public Real2 getSquareBoxCentre(BoxDirection boxEdge) {
+		Real2[] corners = getLLURCorners();
+		Line2 edge = null;
+		if (BoxDirection.LEFT.equals(boxEdge)) {
+			edge = new Line2(corners[0], new Real2(corners[0].getX(), corners[1].getY()));
+		} else if (BoxDirection.TOP.equals(boxEdge)) {
+			edge = new Line2(new Real2(corners[0].getX(), corners[1].getY()), corners[1]);
+		} else if (BoxDirection.LEFT.equals(boxEdge)) {
+			edge = new Line2(corners[1], new Real2(corners[1].getX(), corners[0].getY()));
+		} else if (BoxDirection.BOTTOM.equals(boxEdge)) {
+			edge = new Line2(new Real2(corners[1].getX(), corners[0].getY()), corners[0]);
+		}
 	
+		Real2 centre = edge.createSquarePoint();
+		return centre;
+	}
 	
 }

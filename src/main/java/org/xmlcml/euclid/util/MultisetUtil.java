@@ -104,4 +104,12 @@ public class MultisetUtil {
 		}
 		return entries;
 	}
+
+	public static List<Entry<Double>> createDoubleListSortedByValue(Multiset<Double> lengthSet) {
+		return MultisetUtil.createDoubleEntryList(MultisetUtil.getDoubleEntriesSortedByValue(lengthSet));
+	}
+
+	public static List<Entry<String>> createStringListSortedByValue(Multiset<String> lengthSet) {
+		return MultisetUtil.createStringEntryList(MultisetUtil.getEntriesSortedByValue(lengthSet));
+	}
 }

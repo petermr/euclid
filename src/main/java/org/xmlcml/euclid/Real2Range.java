@@ -16,6 +16,7 @@
 
 package org.xmlcml.euclid;
 import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Level;
@@ -43,7 +44,28 @@ public class Real2Range implements EuclidConstants {
 		LEFT,
 		RIGHT,
 		TOP,
-		BOTTOM
+		BOTTOM;
+		private BoxDirection() {
+		}
+		public BoxDirection getOppositeDirection() {
+			if (LEFT.equals(this)) return RIGHT;
+			if (RIGHT.equals(this)) return LEFT;
+			if (TOP.equals(this)) return BOTTOM;
+			if (BOTTOM.equals(this)) return TOP;
+			return null;
+		}
+		
+		/** LEFT before RIGHT, Bottom before TOP
+		 * 
+		 * @return
+		 */
+		public List<BoxDirection> getPerpendicularDirections() {
+			if (LEFT.equals(this)) return Arrays.asList(new BoxDirection[]{BOTTOM, TOP});
+			if (RIGHT.equals(this)) return Arrays.asList(new BoxDirection[]{BOTTOM, TOP});
+			if (BOTTOM.equals(this)) return Arrays.asList(new BoxDirection[]{LEFT, RIGHT});
+			if (TOP.equals(this)) return Arrays.asList(new BoxDirection[]{LEFT,RIGHT});
+			return null;
+		}
 	}
 	
 	/**
@@ -584,6 +606,39 @@ public class Real2Range implements EuclidConstants {
 	
 		Real2 centre = edge.createSquarePoint();
 		return centre;
+	}
+	
+	/** does this Real2Range touch range1 exactly?
+	 * 
+	 * true if BoxDirection.TOP and range0.getRealRange() == range1.getRealRange()
+	 * and range0.upperLeftCorner == range1.lowerLeftCorner
+	 * 
+	 * similarly for all other cases
+	 * 
+	 * 
+	 * @param range1
+	 * @param horizontal
+	 * @return
+	 * 
+	 * NYI
+	 */
+	public boolean buttsExactlyWith(Real2Range real2Range, BoxDirection direction, double eps) {
+		RealRange thisRange = this.getRealRange(direction);
+		RealRange range1 = real2Range.getRealRange(direction);
+		if (RealRange.isEqual(thisRange, range1, eps)) {
+			BoxDirection oppositeDirection = direction.getOppositeDirection();
+		}
+		return false;
+	}
+	
+	public RealRange getRealRange(BoxDirection direction) {
+		RealRange range = null;
+		if (BoxDirection.TOP == direction || BoxDirection.BOTTOM == direction) {
+			range = getXRange();
+		} else if (BoxDirection.LEFT == direction || BoxDirection.RIGHT == direction) {
+			range = getYRange();
+		}
+		return range;
 	}
 	
 }

@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.xmlcml.euclid.IntRangeComparator.End;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multiset;
@@ -53,7 +54,7 @@ public class IntRange implements EuclidConstants, Comparable<IntRange> {
 	private final static Pattern CURLY_PATTERN2 = Pattern.compile("\\{([^,]+),([^,]+)\\}");
 	private final static String ANY = "*";
 
-	public final static IntRangeComparator ASCENDING_MIN_COMPARATOR = new IntRangeComparator();
+	public final static IntRangeComparator ASCENDING_MIN_COMPARATOR = new IntRangeComparator(End.MIN);
 	
     /**
      * maximum of range
@@ -459,11 +460,11 @@ public class IntRange implements EuclidConstants, Comparable<IntRange> {
 		}
 	}
 }
-class IntRangeComparator implements Comparator<IntRange>{
-
-	public int compare(IntRange o1, IntRange o2) {
-		if (o1 == null || o2 == null) return -1;
-		return o1.getMin() - o2.getMin();
-	}
-	
-}
+//class IntRangeComparator implements Comparator<IntRange>{
+//
+//	public int compare(IntRange o1, IntRange o2) {
+//		if (o1 == null || o2 == null) return -1;
+//		return o1.getMin() - o2.getMin();
+//	}
+//	
+//}

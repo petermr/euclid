@@ -686,7 +686,6 @@ public class Point3VectorTest {
 				1., 2. });
 		t = pthis.roughAlign(pref);
 		pthis.transform(t);
-		// LOG.debug("PA "+pthis+"\n"+t);
 		RealArray.round(pthis.getArray(), 6);
 		Point3VectorTest.assertEquals("transformed pthis", pref, pthis,
 				0.000001);

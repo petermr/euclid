@@ -2123,7 +2123,6 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 			delta--;
 		}
 		double scale = Math.abs(delta);
-		LOG.debug("this: "+this+" "+offset+" "+Util.format(delta, 2));
 		array0.shiftArrayRight(offset);
 		array1.shiftArrayRight(offset);
 		array0 = array0.multiplyBy(scale);
@@ -2133,15 +2132,7 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		} else if (delta < 0) {
 			array1.shiftArrayRight(1);
 		}
-		LOG.debug("array0: "+array0.format(2));
-		LOG.debug("array1: "+array1.format(2));
 		RealArray newArray = array0.plus(array1);
-//		if (delta <= 0) {
-//			newArray.shiftArrayRight(offset);
-//		} else {
-//			newArray.shiftArrayRight(offset);
-//		}
-		LOG.debug("newArray: "+newArray.format(2)+"\n");
 		
 		return newArray;
 	}

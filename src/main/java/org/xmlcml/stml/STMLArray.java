@@ -1003,7 +1003,6 @@ public class STMLArray extends STMLElement implements HasUnits, HasArraySize,
 					+ ((STMLElement) hasDictRef).getLocalName());
 		}
 		this.removeWhitespaceDelimiterAttribute();
-		// this.debug("APPPEND");
 	}
 
 	/**

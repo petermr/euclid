@@ -187,8 +187,6 @@ public final class TestUtils implements STMLConstants {
 					Attribute testAtt = testElem.getAttribute(attName,
 							attNamespace);
 					if (testAtt == null) {
-						// XMLUtil.debug((Element)refNode, "XXXXXXXXXXX");
-						// XMLUtil.debug((Element)testNode, "TEST");
 						Assert.fail(message + " attribute on ref not on test: "
 								+ attName);
 					}

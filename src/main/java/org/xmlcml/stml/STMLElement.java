@@ -526,15 +526,9 @@ public class STMLElement extends Element implements XMLConstants {
      * 
      */
     public void appendChild(Node child) {
-//        if (child instanceof STMLArray) {
-//        	XMLUtil.debug((Element)child, "CHILLLL000");
-//        }
         child.detach();
         int childCount = this.getChildCount();
         insertChild(child, childCount);
-//        if (child instanceof STMLArray) {
-//        	XMLUtil.debug((Element)child, "CHILLLL111");
-//        }
     }
 
 	/**

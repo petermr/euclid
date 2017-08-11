@@ -109,26 +109,7 @@ public class IntRangeArray implements Iterable<IntRange> {
 		}
 	}
 	
-//	public IntRangeArray intersectionWith(IntRangeArray array) {
-//		IntRangeArray newArray = null;
-//		if (array != null) {
-//			IntRangeArray this2 = new IntRangeArray(this);
-//			this2.sortAndRemoveOverlapping();
-//			Iterator<IntRange> thisIterator = this2.iterator();
-//			IntRangeArray array2 = new IntRangeArray(array);
-//			array2.sortAndRemoveOverlapping();
-//			Iterator<IntRange> arrayIterator = array.iterator();
-//			Iterator<IntRange> currentIterator = thisIterator;
-//			Iterator<IntRange> otherIterator = arrayIterator;
-//			IntRange currentRange = currentIterator.hasNext() ? currentIterator.next() : null;
-//			IntRange otherRange = otherIterator.hasNext() ? otherIterator.next() : null;
-//			while (true) {
-//				if (currentRange.i)
-//			}
-//		}
-//		return newArray;
-//	}
-	
+
 	public IntRangeArray plus(IntRangeArray array) {
 		IntRangeArray newArray = null;
 		if (array != null) {

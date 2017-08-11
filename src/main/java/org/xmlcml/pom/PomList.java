@@ -72,7 +72,7 @@ public class PomList {
 
 	private void extractPomsFromDirectory() {
 		if (!directory.isDirectory()) {
-			LOG.debug("cannot find directory: "+directory.getAbsolutePath());
+			LOG.warn("cannot find directory: "+directory.getAbsolutePath());
 		} else if (projectNames != null) {
 			for (String projectName : projectNames) {
 				File directory1 = new File(directory, projectName);
@@ -80,13 +80,13 @@ public class PomList {
 				try {
 					pomFile = new File(directory1, "pom.xml").getCanonicalFile();
 				} catch (IOException e) {
-					LOG.debug("file does not exist "+pomFile, e);
+					LOG.warn("file does not exist "+pomFile, e);
 					break;
 				}
 				if (!pomFile.exists()) {
-					LOG.debug("unknown file: "+pomFile);
+					LOG.warn("unknown file: "+pomFile);
 				} else if (pomFile.isDirectory()) {
-					LOG.debug("file is directory: "+pomFile);
+					LOG.warn("file is directory: "+pomFile);
 				} else {
 					Pom pom = new Pom(pomFile);
 					pomList.add(pom);
@@ -123,7 +123,7 @@ public class PomList {
 			for (MvnProject project : pom.getOrCreateDependencies()) {
 				if (contains(project)) {
 					Dependency dependency = new Dependency(pom, project);
-					LOG.debug(""+dependency);
+					LOG.trace(""+dependency);
 					dependencyList.add(dependency);
 				}
 			}

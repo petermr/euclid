@@ -1211,7 +1211,6 @@ public class RealMatrixTest{
 			}
 		);
 		RealMatrix matrix0 = new RealMatrix(matrix);
-		LOG.debug(">>>"+matrix0);
 		RealMatrix newMatrix = matrix0.createMatrixWithOriginShifted(0.1, 0.2);
 		DoubleTestBase.assertEquals("shifted", new double[]{
 			3.42,12.7,42.12,6.62,1.4,
@@ -1219,7 +1218,6 @@ public class RealMatrixTest{
 			18.44,42.32,84.28,13.68,3.6,
 			11.4,27.6,55.0,9.2,2.0
 		}, newMatrix.getMatrixAsArray(), 0.1);
-		LOG.debug(">>>>>"+newMatrix);
 		
 	}
 
@@ -1237,16 +1235,13 @@ public class RealMatrixTest{
 			}
 		);
 		RealMatrix matrix0 = new RealMatrix(matrix);
-		LOG.debug(">>>"+matrix0);
 		RealMatrix newMatrix = matrix0.scaleAndInterpolate(5, 7);
-		LOG.debug(">>>"+newMatrix);
 		DoubleTestBase.assertEquals("shifted", new double[]{
-				2.0,3.8,12.0,40.0,12.8,4.0,1.0,
-				5.0,14.0,28.5,62.5,20.9,7.3,2.5,
-				12.0,24.3,43.0,85.0,28.2,9.8,3.5,
-				16.0,28.0,46.8,90.0,29.6,10.1,3.5,
-				10.0,18.4,31.2,60.0,20.0,6.8,2.0,		}, newMatrix.getMatrixAsArray(), 0.1);
-		LOG.debug(">>>>>"+newMatrix);
+			2.0,3.8,12.0,40.0,12.8,4.0,1.0,
+			5.0,14.0,28.5,62.5,20.9,7.3,2.5,
+			12.0,24.3,43.0,85.0,28.2,9.8,3.5,
+			16.0,28.0,46.8,90.0,29.6,10.1,3.5,
+			10.0,18.4,31.2,60.0,20.0,6.8,2.0,		}, newMatrix.getMatrixAsArray(), 0.1);
 		
 	}
 

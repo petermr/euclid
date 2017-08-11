@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -459,12 +460,16 @@ public class IntRange implements EuclidConstants, Comparable<IntRange> {
 			this.minval = min;
 		}
 	}
+	
+	/** create sorted list from a set of IntRanges.
+	 * 
+	 * @param intRangeSet
+	 * @return
+	 */
+	public static List<IntRange> createSortedList(Set<IntRange> intRangeSet) {
+		List<IntRange> intRangeList = new ArrayList<IntRange>(intRangeSet);
+		Comparator<IntRange> lowEndComparator = new IntRangeComparator(IntRangeComparator.End.MIN);
+		Collections.sort(intRangeList, lowEndComparator);
+		return intRangeList;
+	}
 }
-//class IntRangeComparator implements Comparator<IntRange>{
-//
-//	public int compare(IntRange o1, IntRange o2) {
-//		if (o1 == null || o2 == null) return -1;
-//		return o1.getMin() - o2.getMin();
-//	}
-//	
-//}

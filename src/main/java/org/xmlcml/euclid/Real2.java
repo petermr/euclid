@@ -485,15 +485,12 @@ public class Real2 implements EuclidConstants {
             double dista = newPoints[1].subtract(repelPoint).getLength();
             double distb = newPoints[nPoints - 2].subtract(repelPoint)
                     .getLength();
-            // LOG.debug(""+dista+S_SLASH+distb+"/"+repelPoint+"/"+newPoints[1]+"/"+newPoints[nPoints-2]);
             if (dista > distb) {
-                // logger.info("SWAP");
                 center = center0;
                 dTheta = -dTheta;
                 theta = theta0;
                 newPoints = makePoints(center, nPoints, rad, theta, dTheta);
             } else {
-                // LOG.debug("NOSWAP");
             }
         }
         return newPoints;

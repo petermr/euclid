@@ -61,58 +61,6 @@ public class RealRangeList {
 		}
 		return result;
 	}
-
-//	private int insertRange() {
-//		int result = -1;
-//		pointer = 0;
-//		while (pointer < rangeList.size()) {
-//			RealRange lastRange = (pointer == 0) ? null : rangeList
-//					.get(pointer - 1);
-//			RealRange nextRange = (pointer >= rangeList.size()) ? null
-//					: rangeList.get(pointer);
-//			// look for next?
-//			if (newRange.getMin() > nextRange.getMax()) {
-//				pointer++;
-//				continue;
-//			}
-//			// insert?
-//			boolean overlapsLast = overlapsAtBottom(newRange, lastRange)
-//					&& lastRange != null;
-//			boolean nextOverlaps = overlapsAtBottom(nextRange, newRange);
-//			if (!overlapsLast && !nextOverlaps) {
-//				result = pointer;
-//				rangeList.add(pointer, newRange);
-//				break;
-//			}
-//			result = pointer;
-//			merged = false;
-//			if (overlapsLast) {
-//				lastRange.plusEquals(newRange);
-//				newRange = lastRange;
-//				result--;
-//				merged = true;
-//			}
-//			// overlap with next and merge
-////			LOG.debug(this);
-//			result = pointer;
-//			List<Integer> mergedRanges = iterateTillNextNonOverlapping(newRange,
-//					nextRange, nextOverlaps);
-//			LOG.trace(newRange + "/" +this + "/" +  pointer);
-//			if (merged) {
-//				int largest = Math.max(0, rangeList.size() - 1);
-//				newRange.plusEquals(rangeList.get(largest)); // take largest extent
-//				removeOverlappedRangesAndReplaceByOverallRange(result,
-//						mergedRanges);
-//			}
-//			break;
-//		}
-//		// add at end?
-//		if (result == -1) {
-//			result = rangeList.size();
-//			rangeList.add(newRange);
-//		}
-//		return result;
-//	}
 	
 	private int insertRange1() {
 		pointer = findFirstLargerOrOverlappingExistingRange();
@@ -155,40 +103,6 @@ public class RealRangeList {
 			rangeList.remove(toRemove);
 		}
 	}
-
-//	private void removeOverlappedRangesAndReplaceByOverallRange(
-//			int result, List<Integer> mergedRanges) {
-//		Collections.reverse(mergedRanges);
-//		//LOG.debug(mergedRanges);
-//		for (int ii = 0; ii < mergedRanges.size() - 1; ii++) {
-//			int toRemove = (int) mergedRanges.get(ii);
-//			rangeList.remove(toRemove);
-//		}
-//		rangeList.set(result, newRange);
-//	}
-
-//	private List<Integer> iterateTillNextNonOverlapping(RealRange range,
-//			RealRange nextRange, boolean nextOverlaps) {
-//		List<Integer> mergedRanges = new ArrayList<Integer>();
-//		while (nextOverlaps) {
-//			range.plusEquals(nextRange);
-//			nextRange = this.get(pointer);
-//			nextOverlaps = overlapsAtBottom(nextRange, range);
-//			if (!nextOverlaps) {
-//				break;
-//			}
-//			mergedRanges.add(pointer);
-//			merged = true;
-//			pointer++;
-//		}
-//		return mergedRanges;
-//	}
-
-//	// is all of range1 less than all of range0?
-//	private boolean overlapsAtBottom(RealRange higher, RealRange lower) {
-//		return higher != null && lower != null
-//				&& lower.getMax() >= higher.getMin();
-//	}
 
 	public int size() {
 		return rangeList.size();

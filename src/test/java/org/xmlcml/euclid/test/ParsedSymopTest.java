@@ -47,7 +47,7 @@ public class ParsedSymopTest {
 		try {
 			symop = ParsedSymop.createSymop("xy");
 		} catch (Exception e) {
-			LOG.debug("'xy' is not picked up as error, sorry");
+			LOG.warn("'xy' is not picked up as error, sorry");
 		}
 	}
 	

@@ -2528,7 +2528,6 @@ public class Util implements EuclidConstants {
 	
 	public static double parseFlexibleDouble(String value)
 			throws ParseException {
-		//LOG.debug("Parsing "+ value);
 		if (value != null) {
 			// 0, -0, INF, -INF and NaN : Special cases from the XSD spec.
 			if ("INF".equals(value)) {
@@ -3140,7 +3139,7 @@ public class Util implements EuclidConstants {
 		if (PM286.equals(System.getProperty("user.name"))) {
 			check = true;
 		} else {
-			LOG.debug("Skipping PMR-only test");
+			LOG.info("Skipping PMR-only test");
 		}
 		return check;
 	}

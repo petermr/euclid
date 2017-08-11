@@ -63,7 +63,6 @@ public class XPathGenerator {
 			return;
 		String name = element.getLocalName();
 		String el = element.toXML();
-//		LOG.debug(">anc>"+el.toString().substring(0,  Math.min(el.length(), 300)));
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append(((shortFlag) ? "/" + name : "/*[local-name()='" + name + "']"));
 		// FIXME this is NOT UNIQUE
@@ -77,7 +76,6 @@ public class XPathGenerator {
 			sb1.append("[" + ordinal + "]");
 		}
 		String ss = sb1.toString();
-//		LOG.debug(">"+ss);
 		sb.insert(0, ss);
 		ParentNode parent = element.getParent();
 		if (parent != null && parent instanceof Element) {

@@ -244,7 +244,6 @@ public class RealRangeTest {
 			Assert.assertTrue("limit: ", d >= 10. && d <= 20.);
 			sum += d;
 		}
-		// LOG.debug(sum);
 		// crude check
 		Assert.assertTrue("distribution", sum > 1400 && sum < 1600);
 	}

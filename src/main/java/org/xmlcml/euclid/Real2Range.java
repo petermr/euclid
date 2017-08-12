@@ -573,7 +573,7 @@ public class Real2Range implements EuclidConstants {
 			realRange.extendLowerEndBy(lowerDelta);
 			realRange.extendUpperEndBy(upperDelta);
 		} else {
-			LOG.warn("null range");
+			LOG.trace("null range");
 		}
 	}
 

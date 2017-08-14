@@ -25,12 +25,16 @@ public class CSVUtil {
 	 * @param valueListList
 	 */
 	public static void writeCSV(String fileName, List<String> csvHeaders, List<List<String>> valueListList) {
+		if (fileName == null) {
+			LOG.error("null filename");
+		}
 		FileWriter fileWriter = null;
         CSVPrinter csvFilePrinter = null;
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
                  
         try {
         	File file = new File(fileName);
+        	file.getParentFile().mkdirs();
             fileWriter = new FileWriter(file);
             csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
             csvFilePrinter.printRecord(csvHeaders);
@@ -41,13 +45,16 @@ public class CSVUtil {
         } catch (Exception e) {
             throw new RuntimeException("failed to write CSV", e);
         } finally {
-            try {
-                fileWriter.flush();
-                fileWriter.close();
-                csvFilePrinter.close();
-            } catch (IOException e) {
-                throw new RuntimeException("failed to close/flush CSV", e);
-            }
+        	// could be null if failed to create file
+        	if (fileWriter != null) {
+	            try {
+	                fileWriter.flush();
+	                fileWriter.close();
+	                csvFilePrinter.close();
+	            } catch (IOException e) {
+	                throw new RuntimeException("failed to close/flush CSV", e);
+	            }
+        	}
         }
 	}
 	

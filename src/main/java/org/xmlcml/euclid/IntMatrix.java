@@ -339,7 +339,7 @@ public class IntMatrix implements EuclidConstants {
     // check that plus, subtract is possible
     private void checkConformable(IntMatrix m) throws EuclidRuntimeException {
         if (rows != m.rows || cols != m.cols) {
-            throw new EuclidRuntimeException("unequal matrices");
+            throw new EuclidRuntimeException("unequal matrices:"+rows+"*"+cols+" != "+m.rows+"*"+m.cols);
         }
     }
     // check that multiply is possible

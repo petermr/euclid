@@ -640,5 +640,13 @@ public class Real2Range implements EuclidConstants {
 		}
 		return range;
 	}
+	public static Real2Range createTotalBox(List<Real2Range> boundingBoxList) {
+		if (boundingBoxList == null || boundingBoxList.size() == 0) return null;
+		Real2Range bbox = new Real2Range(boundingBoxList.get(0));
+		for (int i = 1; i < boundingBoxList.size(); i++) {
+			bbox.plusEquals(boundingBoxList.get(i));
+		}
+		return bbox;
+	}
 	
 }

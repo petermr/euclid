@@ -226,11 +226,23 @@ public class Real2Range implements EuclidConstants {
      * 
      */
     public Real2Range intersectionWith(Real2Range r2) {
+    	return intersectionWith(r2, 0.0);
+    }
+    
+    /**
+     * intersect two ranges and take the range common to both; return invalid
+     * range if no overlap or either is null/invalid
+     * 
+     * @param r2
+     * @return range
+     * 
+     */
+    public Real2Range intersectionWith(Real2Range r2, double delta) {
         if (!isValid() || r2 == null || !r2.isValid()) {
             return new Real2Range();
         }
-        RealRange xr = this.getXRange().intersectionWith(r2.getXRange());
-        RealRange yr = this.getYRange().intersectionWith(r2.getYRange());
+        RealRange xr = this.getXRange().intersectionWith(r2.getXRange(), delta);
+        RealRange yr = this.getYRange().intersectionWith(r2.getYRange(), delta);
         return (xr == null || yr == null) ? null : new Real2Range(xr, yr);
     }
     
@@ -647,6 +659,29 @@ public class Real2Range implements EuclidConstants {
 			bbox.plusEquals(boundingBoxList.get(i));
 		}
 		return bbox;
+	}
+	/** adds a bounding box to list of bboxes and merges if it overlaps
+	 * crude - might not unite two isolated bboxes 
+	 * 
+	 * @param boundingBox
+	 * @param bboxList
+	 * @return merged if one or more merges
+	 */
+	public static boolean agglomerateIntersections(Real2Range boundingBox, List<Real2Range> bboxList, double delta) {
+		Real2Range bbox = null;
+		boolean merged = false;
+		for (int i = bboxList.size() - 1; i >= 0; i--) {
+			bbox = bboxList.get(i).intersectionWith(boundingBox, delta);
+			if (bbox != null) {
+				bboxList.set(i, bbox);
+				boundingBox = bbox;
+				merged = true;
+			}
+		}
+		if (!merged) {
+			bboxList.add(boundingBox);
+		}
+		return merged;
 	}
 	
 }

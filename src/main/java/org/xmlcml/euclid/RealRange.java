@@ -229,12 +229,24 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
      * @return range
      */
     public RealRange intersectionWith(RealRange r2) {
+    	return intersectionWith(r2, 0.0);
+    }
+    
+    /**
+     * intersect two ranges (with margin) and take the range common to both;
+     * return null if no overlap
+     * 
+     * @param r2
+     * @param delta half the margin of error 
+     * @return range
+     */
+    public RealRange intersectionWith(RealRange r2, double delta) {
     	RealRange inter = null;
         if (isValid() && r2 != null && r2.isValid()) {
-	        double minv = Math.max(minval, r2.minval);
-	        double maxv = Math.min(maxval, r2.maxval);
+	        double minv = Math.max(minval - delta, r2.minval - delta);
+	        double maxv = Math.min(maxval + delta, r2.maxval + delta);
 	        if (minv <= maxv) {
-	        	inter = new RealRange(minv, maxv);
+	        	inter = new RealRange(Math.min(minval, r2.minval), Math.max(maxval, r2.maxval));
 	        }
         }
         return inter;

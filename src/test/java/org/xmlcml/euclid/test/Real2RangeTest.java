@@ -137,6 +137,23 @@ public class Real2RangeTest {
 		ii = ix.intersectionWith(iy);
 		Assert.assertEquals("plus", "((1.0,4.0),(11.0,14.0))", ii.toString());
 	}
+	
+	@Test
+	public void testIntersects() {
+		Real2Range r2ra = new Real2Range(new RealRange(1.0, 2.0), new RealRange(20.0, 22.0));
+		Real2Range r2rb = new Real2Range(new RealRange(1.99, 3.0), new RealRange(21.99, 24.0));
+		Assert.assertTrue("overlap", r2ra.intersects(r2rb));
+		r2rb = new Real2Range(new RealRange(2.01, 3.0), new RealRange(21.99, 24.0));
+		Assert.assertFalse("overlap", r2ra.intersects(r2rb));
+		Assert.assertTrue("overlap", r2ra.intersects(r2rb, 0.006));
+		Assert.assertFalse("overlap", r2ra.intersects(r2rb, 0.004));
+		r2rb = new Real2Range(new RealRange(1.99, 3.0), new RealRange(22.01, 24.0));
+		Assert.assertFalse("overlap", r2ra.intersects(r2rb));
+		Assert.assertTrue("overlap", r2ra.intersects(r2rb, 0.006));
+		Assert.assertFalse("overlap", r2ra.intersects(r2rb, 0.004));
+	}
+
+
 
 	/**
 	 * Test method for 'org.xmlcml.euclid.Real2Range.getXRange()'

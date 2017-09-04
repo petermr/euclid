@@ -83,7 +83,7 @@ public class RealRangeArray implements Iterable<RealRange> {
 				newList.add(range);
 				lastRange = range;
 			} else {
-				boolean intersects = lastRange.intersectsWith(range);
+				boolean intersects = lastRange.intersects(range);
 				if (intersects) {
 					RealRange merged = lastRange.plus(range);
 					newList.set(newList.size() - 1, merged);

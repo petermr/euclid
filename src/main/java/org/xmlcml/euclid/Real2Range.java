@@ -226,26 +226,52 @@ public class Real2Range implements EuclidConstants {
      * 
      */
     public Real2Range intersectionWith(Real2Range r2) {
-    	return intersectionWith(r2, 0.0);
-    }
-    
-    /**
-     * intersect two ranges and take the range common to both; return invalid
-     * range if no overlap or either is null/invalid
-     * 
-     * @param r2
-     * @return range
-     * 
-     */
-    public Real2Range intersectionWith(Real2Range r2, double delta) {
         if (!isValid() || r2 == null || !r2.isValid()) {
             return new Real2Range();
         }
-        RealRange xr = this.getXRange().intersectionWith(r2.getXRange(), delta);
-        RealRange yr = this.getYRange().intersectionWith(r2.getYRange(), delta);
+        RealRange xr = this.getXRange().intersectionWith(r2.getXRange());
+        RealRange yr = this.getYRange().intersectionWith(r2.getYRange());
         return (xr == null || yr == null) ? null : new Real2Range(xr, yr);
     }
     
+    /**
+     * do two ranges intersect or nearly intersect?
+     * if the bounding boxes are within 2*delta return true;
+     * 
+     * @param r2
+     * @p
+     * @return range
+     * 
+     */
+    
+    public boolean intersects(Real2Range r2) {
+        if (!isValid() || r2 == null || !r2.isValid()) {
+        	return false;
+        }
+        return this.getXRange().intersects(r2.getXRange()) &&
+        	this.getYRange().intersects(r2.getYRange());
+    }
+    
+
+
+    /**
+     * do two ranges intersect or nearly intersect?
+     * if the bounding boxes are within 2*delta return true;
+     * 
+     * @param r2
+     * @p
+     * @return range
+     * 
+     */
+    public boolean intersects(Real2Range r2, double delta) {
+        if (!isValid() || r2 == null || !r2.isValid()) {
+        	return false;
+        }
+        return this.getXRange().intersects(r2.getXRange(), delta) &&
+        	this.getYRange().intersects(r2.getYRange(), delta);
+    }
+    
+
     /**
      * get xrange
      * 
@@ -671,8 +697,7 @@ public class Real2Range implements EuclidConstants {
 		Real2Range bbox = null;
 		boolean merged = false;
 		for (int i = bboxList.size() - 1; i >= 0; i--) {
-			bbox = bboxList.get(i).intersectionWith(boundingBox, delta);
-			if (bbox != null) {
+			if (bboxList.get(i).intersects(boundingBox, delta)) {
 				bboxList.set(i, bbox);
 				boundingBox = bbox;
 				merged = true;

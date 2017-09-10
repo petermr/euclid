@@ -24,6 +24,15 @@ public class RealRangeArray implements Iterable<RealRange> {
 		init();
 	}
 
+	/** axis the range is aligned with.
+	 * 
+	 * @param direction
+	 */
+	public RealRangeArray(Direction direction) {
+		this();
+		this.direction = direction;
+	}
+
 	/** deep copy
 	 * 
 	 * @param array
@@ -50,8 +59,8 @@ public class RealRangeArray implements Iterable<RealRange> {
 		this.rangeList = rangeList;
 	}
 
-	public RealRangeArray(Real2Range textBox, Direction direction) {
-		RealRange range = textBox.getRealRange(direction);
+	public RealRangeArray(Real2Range box, Direction direction) {
+		RealRange range = box.getRealRange(direction);
 		this.add(range);
 	}
 
@@ -175,6 +184,10 @@ public class RealRangeArray implements Iterable<RealRange> {
 		return rangeList.iterator();
 	}
 
+	/** what do these caps do?
+	 * 
+	 * @param r2r
+	 */
 	public void addCaps(Real2Range r2r) {
 		if (direction == null) {
 			throw new RuntimeException("Must give direction");

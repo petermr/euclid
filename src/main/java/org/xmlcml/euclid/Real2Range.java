@@ -697,7 +697,9 @@ public class Real2Range implements EuclidConstants {
 		Real2Range bbox = null;
 		boolean merged = false;
 		for (int i = bboxList.size() - 1; i >= 0; i--) {
-			if (bboxList.get(i).intersects(boundingBox, delta)) {
+			Real2Range bboxi = bboxList.get(i);
+			if (bboxi.intersects(boundingBox, delta)) {
+				bbox = boundingBox.plus(bboxi);
 				bboxList.set(i, bbox);
 				boundingBox = bbox;
 				merged = true;

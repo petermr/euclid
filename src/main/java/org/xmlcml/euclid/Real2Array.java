@@ -17,6 +17,7 @@
 package org.xmlcml.euclid;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -112,6 +113,8 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 			this.add(point);
 		}
 	}
+	
+	
 	/**
      * compares the arrays
      * @param r2b array to compare to
@@ -136,6 +139,21 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
      * appends an xy coordinate
      * @param r2
      */
+    public void addElement(Real2 r2) {
+    	if (nelem == 0 || xarr == null || yarr == null) {
+    		xarr = new RealArray();
+    		yarr = new RealArray();
+    	}
+    	xarr.addElement(r2.getX());
+    	yarr.addElement(r2.getY());
+    	nelem++;
+    }
+    
+    /**
+     * appends an xy coordinate
+     * @param r2
+     */
+    @Deprecated // confusable with Plus
     public void add(Real2 r2) {
     	if (nelem == 0 || xarr == null || yarr == null) {
     		xarr = new RealArray();
@@ -539,6 +557,43 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 		return points;
 	}
 	
+	public static Real2Array createReal2Array(Real2 ... points) {
+		List<Real2> pointList = points == null ? new ArrayList<Real2>() : Arrays.asList(points);
+		return new Real2Array(pointList);
+	}
+
+	/** multiples (scales) all elemnts of this.
+	 * 
+	 * @param d
+	 * @return
+	 */
+	public void multiplyBy(double d) {
+		xarr = xarr.multiplyBy(d);
+		yarr = yarr.multiplyBy(d);
+	}
+	
+	/** rotates array geometrically about geometric midpoint.
+	 * xymid = (xy0+xyn )/2.
+	 * then xyj = 2*xymid - xyk, where j+k = n
+	 * 
+	 * @return modified array
+	 */
+	public Real2Array getRotatedAboutMidPoint() {
+		Real2Array rotatedXY = new Real2Array(nelem);
+		if (nelem > 0) {
+			int last = nelem - 1;
+			Real2 midxy = this.get(0).getMidPoint(this.get(last));
+			Real2 midxy2 = midxy.plus(midxy);
+			for (int i = 0; i < nelem; i++) {
+				Real2 rotated2 = midxy2.subtract(this.get(i));
+				rotatedXY.setElement(i, rotated2);
+			}
+		}
+		return rotatedXY;
+	}
+	public Real2 getMidpointOfEnds() {
+		return (get(0).plus(get(size() - 1))).multiplyBy(0.5);
+	}
 	
 	
 }

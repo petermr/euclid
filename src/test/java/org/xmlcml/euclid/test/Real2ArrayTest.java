@@ -204,13 +204,7 @@ public class Real2ArrayTest {
 	
 	@Test
 	public void testSort() {
-		Real2Array r2a = new Real2Array();
-		r2a.add(new Real2(1.0, 9.0));
-		r2a.add(new Real2(7.0, 3.0));
-		r2a.add(new Real2(2.0, 8.0));
-		r2a.add(new Real2(5.0, 1.0));
-		r2a.add(new Real2(4.0, 7.0));
-		r2a.add(new Real2(8.0, 6.0));
+		Real2Array r2a = get6ElementTestArray();
 		r2a.sortAscending(0);
 		Assert.assertEquals("xa", "((1.0,9.0)(2.0,8.0)(4.0,7.0)(5.0,1.0)(7.0,3.0)(8.0,6.0))", r2a.toString());
 		r2a.sortAscending(1);
@@ -220,4 +214,31 @@ public class Real2ArrayTest {
 		r2a.sortDescending(1);
 		Assert.assertEquals("xa", "((1.0,9.0)(2.0,8.0)(4.0,7.0)(8.0,6.0)(7.0,3.0)(5.0,1.0))", r2a.toString());
 	}
+	
+	@Test
+	public void testGetMidPointOfEnds() {
+		Real2Array r2a = get6ElementTestArray();
+		Real2 midPoint = r2a.getMidpointOfEnds();
+		Assert.assertEquals("(4.5,7.5)", midPoint.toString());
+	}
+
+	@Test
+	public void testGetRotatedAboutMidPointOfEnds() {
+		Real2Array r2a = get6ElementTestArray();
+		Real2Array rot = r2a.getRotatedAboutMidPoint();
+		Assert.assertEquals("((8.0,6.0)(2.0,12.0)(7.0,7.0)(4.0,14.0)(5.0,8.0)(1.0,9.0))", rot.toString());
+	}
+	
+	// ======================================
+	private Real2Array get6ElementTestArray() {
+		Real2Array r2a = new Real2Array();
+		r2a.addElement(new Real2(1.0, 9.0));
+		r2a.addElement(new Real2(7.0, 3.0));
+		r2a.addElement(new Real2(2.0, 8.0));
+		r2a.addElement(new Real2(5.0, 1.0));
+		r2a.addElement(new Real2(4.0, 7.0));
+		r2a.addElement(new Real2(8.0, 6.0));
+		return r2a;
+	}
+
 }

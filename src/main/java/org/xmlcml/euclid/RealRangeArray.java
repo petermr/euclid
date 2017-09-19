@@ -305,4 +305,16 @@ public class RealRangeArray implements Iterable<RealRange> {
 		}
 	}
 
+	public boolean remove(RealRange yRange) {
+		getOrCreateRangeList();
+		return rangeList.remove(yRange);
+	}
+
+	private List<RealRange> getOrCreateRangeList() {
+		if (rangeList == null) {
+			rangeList = new ArrayList<RealRange>();
+		}
+		return rangeList;
+	}
+
 }

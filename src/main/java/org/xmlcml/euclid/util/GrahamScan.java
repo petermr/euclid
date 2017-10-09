@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Stack;
 
+import org.xmlcml.euclid.Real2;
+import org.xmlcml.euclid.Real2Array;
+
 
 /**
  * Algorithm for finding convex hull (one of many in existence).
@@ -15,6 +18,13 @@ public class GrahamScan {
 	
     private Stack<GPoint2D> hull = new Stack<GPoint2D>();
 
+    public GrahamScan(Real2Array real2Array) {
+    	GPoint2D[] points = new GPoint2D[real2Array.size()];
+    	for (int i = 0; i < real2Array.size(); i++) {
+    		
+    	}
+    }
+    
     public GrahamScan(GPoint2D[] pts) {
 
         // defensive copy
@@ -60,10 +70,13 @@ public class GrahamScan {
     }
 
     // return extreme points on convex hull in counterclockwise order as an Iterable
-    public Iterable<GPoint2D> hull() {
+    public Real2Array createHull() {
+    	Real2Array hullArray = new Real2Array();
         Stack<GPoint2D> s = new Stack<GPoint2D>();
-        for (GPoint2D p : hull) s.push(p);
-        return s;
+        for (GPoint2D p : hull) {
+        	hullArray.add(p.getReal2());
+        }
+        return hullArray;
     }
 
     // check that boundary of hull is strictly convex
@@ -73,7 +86,7 @@ public class GrahamScan {
 
         GPoint2D[] points = new GPoint2D[N];
         int n = 0;
-        for (GPoint2D p : hull()) {
+        for (GPoint2D p : hull) {
             points[n++] = p;
         }
 
@@ -154,7 +167,11 @@ public class GrahamScan {
         this.y = y;
     }
 
-    /**
+    public Real2 getReal2() {
+    	return new Real2(x, y);
+	}
+
+	/**
      * Returns the x-coordinate.
      * @return the x-coordinate
      */

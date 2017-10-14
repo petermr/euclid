@@ -73,8 +73,16 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
      */
     public Real2Array(Real2Array r2a) {
     	if (r2a != null && !r2a.equals(this)) {
-    		xarr = new RealArray(r2a.getXArray());
-    		yarr = new RealArray(r2a.getYArray());
+    		RealArray xx = r2a.getXArray();
+    		if (xx == null) {
+    			throw new RuntimeException("Null xarr");
+    		}
+    		RealArray yy = r2a.getYArray();
+    		if (yy == null) {
+    			throw new RuntimeException("Null yarr");
+    		}
+    		xarr = xx == null ? null : new RealArray(xx);
+    		yarr = yy == null ? null : new RealArray(yy);
     		this.nelem = r2a.nelem;
     	}
     }
@@ -153,7 +161,7 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
      * appends an xy coordinate
      * @param r2
      */
-    @Deprecated // confusable with Plus
+    @Deprecated // confusable with Plus // use addElement()
     public void add(Real2 r2) {
     	if (nelem == 0 || xarr == null || yarr == null) {
     		xarr = new RealArray();

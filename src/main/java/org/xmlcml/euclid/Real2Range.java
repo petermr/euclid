@@ -678,6 +678,9 @@ public class Real2Range implements EuclidConstants {
 		}
 		return range;
 	}
+	public boolean isSquare(double eps) {
+		return Math.abs(getXRange().getRange() - getYRange().getRange()) < eps;
+	}
 	public static Real2Range createTotalBox(List<Real2Range> boundingBoxList) {
 		if (boundingBoxList == null || boundingBoxList.size() == 0) return null;
 		Real2Range bbox = new Real2Range(boundingBoxList.get(0));

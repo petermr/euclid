@@ -2235,6 +2235,20 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		}
 		return false;
 	}
+
+	/** caluclate new array with absolute values of elements.
+	 * 
+	 * @return absolute values
+	 */
+	public RealArray getAbsoluteValues() {
+		RealArray absArray = new RealArray(this);
+		for (int i = 0; i < nelem; i++) {
+			if (absArray.array[i] < 0) {
+				absArray.array[i] = - absArray.array[i];
+			}
+		}
+		return absArray;
+	}
 }
 class DoubleIterator implements Iterator<Double> {
 

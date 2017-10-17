@@ -2249,6 +2249,8 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		}
 		return absArray;
 	}
+	
+	
 }
 class DoubleIterator implements Iterator<Double> {
 

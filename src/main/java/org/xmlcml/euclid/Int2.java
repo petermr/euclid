@@ -24,8 +24,18 @@ import java.util.Arrays;
  * 
  * @author (C) P. Murray-Rust, 1996
  */
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 public class Int2 implements EuclidConstants {
-    /** the first integer value */
+	private static final Logger LOG = Logger.getLogger(Int2.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
+	
+    public static final Int2 ZERO = new Int2(0, 0);
+    
+	/** the first integer value */
     int x;
     /** the second integer value */
     int y;
@@ -274,6 +284,22 @@ public class Int2 implements EuclidConstants {
 	 */
 	public static boolean isEqual(Int2 xy0, Int2 xy1) {
 		return (xy0 != null && xy1 != null && xy0.isEqualTo(xy1));
+	}
+	
+	/** move x and y 1 step towards zero (stop when reached)
+	 * (2, -1) => (1, 0) => (0, 0) 
+	 */
+	public void stepToZero() {
+		if (x > 0) {
+			x = x - 1;
+		} else if (x < 0) {
+			x = x + 1;
+		}
+		if (y > 0) {
+			y = y - 1;
+		} else if (y < 0) {
+			y = y + 1;
+		}
 	}
 	
 }

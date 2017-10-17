@@ -602,6 +602,43 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 	public Real2 getMidpointOfEnds() {
 		return (get(0).plus(get(size() - 1))).multiplyBy(0.5);
 	}
+	public RealArray calculateDeviationsRadiansPerElement() {
+		int size = size();
+		RealArray curvature = new RealArray(size - 2);
+		for (int j = 1; j < size - 1; j++) {
+			int i = (j - 1) ;
+			int k = (j + 1) ;
+			Angle angle = Real2.getAngle(get(i), get(j), get(k));
+			angle.normalizeTo2Pi();
+			double ang = angle.getRadian() - Math.PI;
+			curvature. setElementAt(i, ang);
+		}
+		return curvature;
+	}
+	/** creates 4 roughly equal segments and calculates 3 values of curvature
+	 * "units" are pixels per radian. 
+	 * 
+	 * @return
+	 */
+	public RealArray calculate4SegmentedCurvature() {
+		RealArray curvature = null;
+		// divide into 4
+		int size = size();
+		// has to be large enough to be meaningful
+		if (size > 4) {
+			Real2Array segments = new Real2Array(5);
+			segments.setElement(0, get(0));
+			int mid = size / 2;
+			segments.setElement(2, get(mid));
+			int q1 = mid / 2;
+			segments.setElement(1, get(q1));
+			int q3 = (mid + size) / 2;
+			segments.setElement(3, get(q3));
+			segments.setElement(4, getLastPoint());
+			curvature = segments.calculateDeviationsRadiansPerElement();
+		}
+		return curvature;
+	}
 	
 	
 }

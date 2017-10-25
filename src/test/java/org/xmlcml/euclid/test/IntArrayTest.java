@@ -749,4 +749,70 @@ public class IntArrayTest {
 		Assert.assertNull("endo", intIterator00.next());
 		Assert.assertEquals("start", 1, (int) intIterator01.next());
 	}
+	
+	@Test
+	public void testCreateMappedArray() {
+		// create an IntArray of 0,1,2,...,10
+		IntArray testArray = new IntArray(10+1, 0, 1);
+		Assert.assertEquals("(0,1,2,3,4,5,6,7,8,9,10)", testArray.toString());
+		IntArray subArray = testArray.createMappedIndexes(3);
+		Assert.assertEquals("(0,5,10)", subArray.toString());
+		subArray = testArray.createMappedIndexes(4);
+		Assert.assertEquals("(0,3,7,10)", subArray.toString());
+	}
+	
+	/** creates array from indexes
+	 * newArray = this[indexes[0]], this[indexes[1]] ... 
+	 * 
+	 * @param indexes must be in range 0, this.size()-1
+	 * @return new array
+	 * @throws RuntimeException if any indexes are out of range
+	 */
+	
+	@Test
+	public void testCreateIndexedArray() {
+		// create list of integers 0...10
+		IntArray testArray = new IntArray(10+1, 0, 1);
+		IntArray indexes = new IntArray(new int[]{3,0,9,3,5});
+		IntArray newArray = testArray.createMappedArray(indexes);
+		Assert.assertEquals("(3,0,9,3,5)", newArray.toString());
+		testArray = new IntArray(new int[]{100,10,30,50,3,7,99,2,77,5});
+		indexes = new IntArray(new int[]{3,0,9,3,5});
+		newArray = testArray.createMappedArray(indexes);
+		Assert.assertEquals("(50,100,5,50,7)", newArray.toString());
+	}
+
+	/** creates array from indexes
+	 * newArray = this[indexes[0]], this[indexes[1]] ... 
+	 * 
+	 * @param indexes must be in range 0, this.size()-1
+	 * @return new array
+	 * @throws RuntimeException if any indexes are out of range
+	 */
+	
+	@Test
+	public void testCreateSegmentedArray() {
+		// create list of 21 integers 0...20
+		IntArray testArray = new IntArray(20+1, 0, 1);
+		// the first examples are all exact
+		int nsegments = 4;
+		IntArray segmentedArray = testArray.createSegmentedArray(nsegments);
+		Assert.assertEquals("(0,5,10,15,20)", segmentedArray.toString());
+		testArray = new IntArray(new int[]{2,4,6,8,10,12,14,16,18});
+		nsegments = 4;
+		segmentedArray = testArray.createSegmentedArray(nsegments);
+		Assert.assertEquals("(2,6,10,14,18)", segmentedArray.toString());
+		nsegments = 2;
+		segmentedArray = testArray.createSegmentedArray(nsegments);
+		Assert.assertEquals("(2,10,18)", segmentedArray.toString());
+		nsegments = 8;
+		segmentedArray = testArray.createSegmentedArray(nsegments);
+		Assert.assertEquals("(2,4,6,8,10,12,14,16,18)", segmentedArray.toString());
+		nsegments = 3;
+		// note this has nearest integers
+		segmentedArray = testArray.createSegmentedArray(nsegments);
+		Assert.assertEquals("(2,8,12,18)", segmentedArray.toString());
+	}
+
+
 }

@@ -1383,6 +1383,74 @@ public class IntArray extends ArrayBase implements Iterable<Integer> {
 			return false;
 		return true;
 	}
+	
+	/** map npoints 0,1,2...npoints with npoints-1 gaps onto current array (with nelem points).
+	 * "this" has nelem points with index ielem
+	 * 
+	 * points are nearest integers to:
+	 * ielem (double)(npoints - 1)/(double)(nelem - 1)
+	 * 
+	 * Example if this (m) has 7 points
+	 * indexes 0,1,2,3,4,5,6,7
+	 * and a npoints (n) has 4
+	 * indexes 0,1,2,3
+	 * then the mapped indexes would be
+	 * 0, 7/3, 2*7/3, 3*7/3
+	 * or to the nearest int
+	 * 0, 2, 5, 7
+	 * 
+	 * To map two IntArrays to each other use the result of createMappedArray as indexes
+	 * 
+	 * @param npoints includes both ends
+	 * @return array of newpoints-1 integers that correspond to mappings
+	 */
+	public IntArray createMappedIndexes(int newPoints) {
+		IntArray subArray = new IntArray(newPoints);
+		double thisdelta = 1. / (double) (size() - 1);
+		double newdelta = 1. / (double) (newPoints - 1);
+		
+		for (int ipoint = 0; ipoint < newPoints; ipoint++) {
+			int nearest = (int) Math.rint((double) ipoint * newdelta / thisdelta);
+			subArray.setElementAt(ipoint, nearest);
+		}
+		return subArray;
+	}
+	/** creates array from indexes
+	 * newArray = this[indexes[0]], this[indexes[1]] ... 
+	 * 
+	 * @param indexes must be in range 0, this.size()-1
+	 * @return new array
+	 * @throws RuntimeException if any indexes are out of range
+	 */
+	
+	public IntArray createMappedArray(IntArray indexes) {
+		IntArray newIndexes = new IntArray(indexes.size());
+		for (int i = 0; i < indexes.size(); i++) {
+			newIndexes.setElementAt(i, this.elementAt(indexes.elementAt(i)));
+		}
+		return newIndexes;
+	}
+	/** creates array of segments of this 
+	 * 
+	 * @param nSegments number of segments (there will be nSegments+1 points inclusive of ends)
+	 * @return
+	 */
+	public IntArray createSegmentedArray(int nSegments) {
+		IntArray integers = IntArray.naturalNumbers(this.size() - 1);
+		IntArray indexes = integers.createMappedIndexes(nSegments + 1);
+		IntArray segments = this.createMappedArray(indexes);
+		return segments;
+	}
+
+	/** creates n+1 integers from 0,1,...n 
+	 * 
+	 * @param n total number of integers
+	 * @return
+	 */
+	public static IntArray naturalNumbers(int n) {
+		return new IntArray(n + 1, 0, 1);
+	}
+	
 }
 class IntegerIterator implements Iterator<Integer> {
 

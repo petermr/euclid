@@ -1,7 +1,9 @@
 package org.xmlcml.euclid.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.xmlcml.xml.XMLUtil;
 
@@ -105,6 +107,22 @@ public class MultisetUtil {
 		return entries;
 	}
 
+	public static List<Entry<Integer>> createIntegerEntryList(Iterable<Entry<Integer>> iterable) {
+		List<Entry<Integer>> entries = new ArrayList<Entry<Integer>>();
+		for (Entry<Integer> entry : iterable) {
+			entries.add(entry);
+		}
+		return entries;
+	}
+
+	public static List<Entry<Integer>> createIntegerListSortedByCount(Multiset<Integer> lengthSet) {
+		return MultisetUtil.createIntegerEntryList(MultisetUtil.getIntegerEntriesSortedByCount(lengthSet));
+	}
+
+	public static List<Entry<Integer>> createIntegerListSortedByValue(Multiset<Integer> lengthSet) {
+		return MultisetUtil.createIntegerEntryList(MultisetUtil.getIntegerEntriesSortedByValue(lengthSet));
+	}
+
 	public static List<Entry<Double>> createDoubleListSortedByCount(Multiset<Double> lengthSet) {
 		return MultisetUtil.createDoubleEntryList(MultisetUtil.getDoubleEntriesSortedByCount(lengthSet));
 	}
@@ -120,4 +138,13 @@ public class MultisetUtil {
 	public static List<Entry<String>> createStringListSortedByValue(Multiset<String> lengthSet) {
 		return MultisetUtil.createStringEntryList(MultisetUtil.getEntriesSortedByValue(lengthSet));
 	}
+	
+	public static Map<Integer, Integer> createIntegerFrequencyMap(Multiset<Integer> set) {
+		Map<Integer, Integer> countByInteger = new HashMap<Integer, Integer>();
+		for (Entry<Integer> entry : set.entrySet()) {
+			countByInteger.put(entry.getElement(), entry.getCount());
+		}
+		return countByInteger;
+	}
+
 }

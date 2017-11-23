@@ -263,7 +263,7 @@ public class Real2 implements EuclidConstants {
         this.y = -this.y;
     }
     /**
-     * retuen multiplication of a point by a scalar
+     * return multiplication of a point by a scalar
      * does not alter this
      * @param f
      * @return point

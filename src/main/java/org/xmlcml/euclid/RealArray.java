@@ -768,6 +768,34 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
             array[i] -= f.array[i];
         }
     }
+    
+    /**
+     * elementwise array division. does not modify THIS
+     * 
+     *   dividedArray[i] = this[i] / ra[i]
+     *      if divide by zero, new element is Infinity
+
+     * 
+     *  {4,6,8,12} / {2, 0, 2, 4} gives {2, NaN,4,3}
+     *  
+     * @param ra array to divide by
+     * @exception EuclidRuntimeException ra is different size from <TT>this</TT>
+     * 
+     */
+    public RealArray divideBy(RealArray ra) throws EuclidRuntimeException {
+        checkConformable(ra);
+        RealArray dividedArray = new RealArray(this.size());
+        for (int i = nelem - 1; i >= 0; --i) {
+        	try {
+        		dividedArray.array[i] = this.array[i] / ra.array[i];
+        	} catch (ArithmeticException ae) {
+        		dividedArray.array[i] = Double.NaN;
+        	}
+        }
+        return dividedArray;
+    }
+    
+    
     /**
      * change the sign of all elements. MODIFIES this
      */

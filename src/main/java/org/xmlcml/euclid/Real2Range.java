@@ -96,6 +96,8 @@ public class Real2Range implements EuclidConstants {
     }
     /** create from min corner of box and max corner
      * 
+     * Hmm - always makes min < max.
+     * 
      * @param r2a
      * @param r2b
      */
@@ -712,6 +714,32 @@ public class Real2Range implements EuclidConstants {
 			bboxList.add(boundingBox);
 		}
 		return merged;
+	}
+	
+	/** gets transform from "this" to box.
+	 * 
+	 * returns the transform requited to convert this to box, i.e.
+	 * Transform2 t2 = this.getTransformTo(box)
+	 * allows
+	 * Real2Range newBox = this.transformBy(t2)
+	 * to return newBox.equals(box)
+	 * 
+	 * NOTE all ranges have xmin < xmax so won't "change sign"
+	 * NOT TESTED
+	 * 
+	 * 
+	 * @param box
+	 * @return
+	 */
+	public Transform2 getTransformTo(Real2Range box) {
+		
+		double xConstant = this.xrange.getConstantTo(box.xrange);
+		double xScale    = this.xrange.getScaleTo(box.xrange);
+		double yConstant = this.yrange.getConstantTo(box.yrange);
+		double yScale    = this.yrange.getScaleTo(box.yrange);
+		Transform2 t2 = Transform2.createScaleTransform(xScale, yScale);
+		t2.setTranslation(new Real2(xConstant, yConstant));
+		return t2;
 	}
 	
 }

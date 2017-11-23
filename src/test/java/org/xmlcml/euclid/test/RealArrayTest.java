@@ -1246,4 +1246,12 @@ public class RealArrayTest {
 		integerDiffSet = realArray.createIntegerDifferenceMultiset();
 		Assert.assertEquals("int diff set",  "[1 x 4]", integerDiffSet.toString());
 	}
+	
+	@Test
+	public void testDivideBy() {
+		RealArray top = new RealArray("2 4 8 12");
+		RealArray bottom = new RealArray("2 0 4 3");
+		RealArray dividend = top.divideBy(bottom);
+		Assert.assertEquals("(1.0,Infinity,2.0,4.0)", dividend.toString());
+	}
 }

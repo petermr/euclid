@@ -384,7 +384,8 @@ public class Real2 implements EuclidConstants {
      */
     public static Angle getAngle(Real2 p1, Real2 p2, Real2 p3) {
     	if (p1 == null || p2 == null || p3 == null) {
-    		throw new RuntimeException("null coordinates");
+//    		throw new RuntimeException("null coordinates");
+    		return null;
     	}
         double x1 = p1.x - p2.x;
         double y1 = p1.y - p2.y;

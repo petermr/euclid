@@ -600,14 +600,16 @@ public class Real2Range implements EuclidConstants {
 	
 	/** extend the end of range lower end in given direction
 	 * 
+	 * changes this
 	 * uses RealRange.extendLowerEndBy
 	 * uses RealRange.extendUpperEndBy
 	 * 
 	 * @param direction
 	 * @param lowerDelta
 	 * @param upperDelta
+	 * @return this modified
 	 */
-	public void extendBothEndsBy(Direction direction, double lowerDelta, double upperDelta) {
+	public Real2Range extendBothEndsBy(Direction direction, double lowerDelta, double upperDelta) {
 		RealRange realRange = (Direction.HORIZONTAL.equals(direction) ? xrange : yrange);
 		if (realRange != null) {
 			realRange.extendLowerEndBy(lowerDelta);
@@ -615,6 +617,22 @@ public class Real2Range implements EuclidConstants {
 		} else {
 			LOG.trace("null range");
 		}
+		return this;
+	}
+
+	/** extend the end of range in all directions
+	 * 
+	 * changes this
+	 * uses RealRange.extendLowerEndBy
+	 * uses RealRange.extendUpperEndBy
+	 * 
+	 * @param delta amount to all to all ends
+	 * @return this modified
+	 */
+	public Real2Range extendAllEndsBy(double delta) {
+		extendBothEndsBy(Direction.HORIZONTAL, delta, delta);
+		extendBothEndsBy(Direction.VERTICAL, delta, delta);
+		return this;
 	}
 
 	/** gets all 4 corners

@@ -451,6 +451,11 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 		return new Real2Array(xarr, yarr);
 	}
 	
+	/** creates from output representation.
+	 * 
+	 * @param coords format "((1.1,2.2)(3.3,4.4)(5.5,6.6))"
+	 * @return array or null if fails
+	 */
 	public static Real2Array createFromCoords(String coords) {
 		Real2Array real2Array = null;
 		if (coords != null) {
@@ -466,7 +471,7 @@ public class Real2Array implements EuclidConstants ,  Iterable<Real2>  {
 						dd[0] = Util.parseFlexibleDouble(matcher.group(1));
 						dd[1] = Util.parseFlexibleDouble(matcher.group(2));
 						Real2 coord = new Real2(dd);
-						real2Array.add(coord);
+						real2Array.addElement(coord);
 					} catch (Exception e) {
 						LOG.trace("bad coord "+e);
 						real2Array = null;

@@ -411,12 +411,14 @@ public class Real2 implements EuclidConstants {
      * 
      */
     public void transformBy(Transform2 t) {
-        double xx = t.flmat[0][0] * this.x + t.flmat[0][1] * this.y
-                + t.flmat[0][2];
-        double yy = t.flmat[1][0] * this.x + t.flmat[1][1] * this.y
-                + t.flmat[1][2];
-        this.x = xx;
-        this.y = yy;
+    	if (t != null) {
+	        double xx = t.flmat[0][0] * this.x + t.flmat[0][1] * this.y
+	                + t.flmat[0][2];
+	        double yy = t.flmat[1][0] * this.x + t.flmat[1][1] * this.y
+	                + t.flmat[1][2];
+	        this.x = xx;
+	        this.y = yy;
+    	}
     }
     /**
      * gets a point transformed by a rot-trans matrix does NOT MODIFY 'this'

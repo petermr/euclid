@@ -52,6 +52,10 @@ public class MultisetUtil {
 		return Multisets.copyHighestCountFirst(doubleSet).entrySet();
 	}
 
+	public static Iterable<Multiset.Entry<Object>> getObjectEntriesSortedByCount(Multiset<Object> objectSet) {
+		return Multisets.copyHighestCountFirst(objectSet).entrySet();
+	}
+
 
 
 

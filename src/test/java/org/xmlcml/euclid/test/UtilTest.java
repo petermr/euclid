@@ -31,6 +31,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -44,6 +46,11 @@ import org.xmlcml.euclid.Util;
  * 
  */
 public class UtilTest {
+	private static final Logger LOG = Logger.getLogger(UtilTest.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
+
 
 	/**
 	 * Test method for 'org.xmlcml.cml.base.CMLUtil.addElement(String[],
@@ -824,5 +831,12 @@ public class UtilTest {
 		Assert.assertEquals("lines", 88, lines.size());
 	}
 
-
+	@Test
+	public void testCreateUnicodeString() {
+		char c = 0x0020;
+		String space = Util.createUnicodeString(c);
+		Assert.assertEquals("space",  "\\u0020", space);
+		String ss = String.valueOf(space);
+		Assert.assertEquals("space",  " ", space);
+	}
 }

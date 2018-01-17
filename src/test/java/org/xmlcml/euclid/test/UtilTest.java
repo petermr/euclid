@@ -832,6 +832,10 @@ public class UtilTest {
 	}
 
 	@Test
+	@Ignore 
+	/** this only takes place at compile time
+	 * 
+	 */
 	public void testCreateUnicodeString() {
 		char c = 0x0020;
 		String space = Util.createUnicodeString(c);

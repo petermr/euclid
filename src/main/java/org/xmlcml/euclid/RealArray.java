@@ -399,7 +399,23 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
     public RealArray(String string) throws NumberFormatException {
         this(string.split(S_WHITEREGEX));
     }
-    /**
+    /** create from lilst of Doubles.
+     * 
+     * @param yCoords
+     */
+    public RealArray(List<Double> values) {
+    	this();
+    	if (values == null) {
+    		throw new RuntimeException("null array");
+    	}
+    	array = new double[values.size()];
+    	nelem = 0;
+    	for (Double d : values) {
+    		array[nelem++] = d;
+    	}
+	}
+    
+	/**
      * set output format. doesn't yet do anything!
      * 
      * @param f

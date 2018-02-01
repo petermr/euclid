@@ -1,12 +1,7 @@
 package org.xmlcml.euclid;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-
-import com.google.common.collect.Multiset;
 
 /** an arithmetic progression generator.
  * 
@@ -114,7 +109,7 @@ public class RealArithmeticProgression {
 		return start == null || delta == null ? null : start + (i * delta);
 	}
 
-	public double getEnd() {
+	public Double getEnd() {
 		return size == null || size < 2 ? null : getTerm(size - 1);
 	}
 	

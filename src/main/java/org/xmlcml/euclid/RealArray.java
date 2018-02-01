@@ -16,10 +16,13 @@
 
 package org.xmlcml.euclid;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Test;
+import org.xmlcml.euclid.util.MultisetUtil;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
@@ -2229,6 +2232,53 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		return deltaSet;
 	}
 
+	/** list of diffs sorted by countDescending.
+	 * 
+	 * new RealArray("1 2 3 4 5  8 9 10  13 14 15 16");
+	 * gives [1.0 x 9, 3.0 x 2]
+	 * 
+	 * @param nplaces format delta Array
+	 * 
+	 * @return 
+
+	 */
+	public List<Multiset.Entry<Double>> createSortedDoubleDifferenceList(int nplaces) {
+		Multiset<Double> diffSet = createDoubleDifferenceMultiset(nplaces);
+		List<Multiset.Entry<Double>> diffList = MultisetUtil.createDoubleListSortedByCount(diffSet);
+		return diffList;
+	}
+
+	/** commonest difference.
+	 * 
+	 * new RealArray("1 2 3 4 5  8 9 10  13 14 15 16");
+	 * gives 1.0
+	 * 
+	 * @param nplaces format delta Array
+	 * 
+	 * @return 
+
+	 */
+	public Double getCommonestDifference(int nplaces) {
+		List<Multiset.Entry<Double>> diffList = createSortedDoubleDifferenceList(nplaces);
+		return diffList == null || diffList.size() == 0 ? null : diffList.get(0).getElement();
+	}
+
+	/** second commonest difference.
+	 * 
+	 * new RealArray("1 2 3 4 5  8 9 10  13 14 15 16");
+	 * gives 3.0
+	 * 
+	 * @param nplaces format delta Array
+	 * 
+	 * @return 
+
+	 */
+	public Double getSecondCommonestDifference(int nplaces) {
+		List<Multiset.Entry<Double>> diffList = createSortedDoubleDifferenceList(nplaces);
+		return diffList == null || diffList.size() < 2 ? null : diffList.get(1).getElement();
+	}
+
+
 	/** create a set of all values as formatted Doubles.
 	 * 
 	 * @param nplaces number of places to format
@@ -2294,7 +2344,51 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		return absArray;
 	}
 	
-	
+	/** creates List of ArithmeticProgression from sorted monotonic reals with chunks of equally spaced elements.
+	 *  
+	 *  note delta(i) is the actual difference between each successive pair
+	 *  of reals.
+	 *  meanDelta is the mean of delta(i)
+	 *  epsilon is the allowed tolerance between any delta(i) and meanDelta
+	 *  fails if any abs(delta(i) - meanDelta) > epsilon and returns null
+	 *  
+	 *  attempts to find chunks with spacing (nearly) equal 
+	 *  
+	 *  must have commonest difference at least count 2 
+	 *  
+	 * @param realArray must have >= 4 elements
+	 * @param epsilon allowed tolerance
+	 * @return
+	 */
+	public List<RealArray> createArithmeticProgressionList(double epsilon) {
+		RealArray currentRealArray = null;
+		List<RealArray> realArrayList = new ArrayList<RealArray>();
+		int size = this.size();
+		if (size >= 4) {
+			int nplaces = (int) Math.ceil(-1.0 * Math.log10(epsilon));
+			List<Multiset.Entry<Double>> diffList = this.createSortedDoubleDifferenceList(nplaces);
+			Multiset.Entry<Double> diff0 = diffList.get(0);
+//			Multiset.Entry<Double> diff1 = diffList.get(1);
+			if (diff0.getCount() >= 2) {
+				double commonestDiff = diff0.getElement();
+				for (int i = 1; i < size; i++) {
+					double delta = this.get(i) - this.get(i - 1);
+					if (Real.isEqual(commonestDiff, delta, epsilon)) {
+						if (currentRealArray == null) {
+							currentRealArray = new RealArray();
+							currentRealArray.addElement(this.get(i - 1));
+							realArrayList.add(currentRealArray);
+						}
+						currentRealArray.addElement(this.get(i));
+					} else {
+						currentRealArray = null;
+					}
+				}
+			}
+		}
+		return realArrayList;
+	}
+
 }
 class DoubleIterator implements Iterator<Double> {
 

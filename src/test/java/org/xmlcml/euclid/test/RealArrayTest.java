@@ -19,6 +19,7 @@ package org.xmlcml.euclid.test;
 import static org.xmlcml.euclid.EuclidConstants.EPS;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -26,6 +27,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.euclid.ArrayBase.Trim;
+import org.xmlcml.euclid.RealArithmeticProgression;
 import org.xmlcml.euclid.EuclidConstants;
 import org.xmlcml.euclid.EuclidRuntimeException;
 import org.xmlcml.euclid.IntArray;
@@ -33,6 +35,7 @@ import org.xmlcml.euclid.IntSet;
 import org.xmlcml.euclid.RealArray;
 import org.xmlcml.euclid.RealArray.Filter;
 import org.xmlcml.euclid.RealArray.Monotonicity;
+import org.xmlcml.euclid.util.MultisetUtil;
 import org.xmlcml.euclid.RealRange;
 
 import com.google.common.collect.Multiset;
@@ -1254,4 +1257,74 @@ public class RealArrayTest {
 		RealArray dividend = top.divideBy(bottom);
 		Assert.assertEquals("(1.0,Infinity,2.0,4.0)", dividend.toString());
 	}
+	
+	@Test
+	public void testCreateArithmeticProgression() {
+		RealArray realArray = new RealArray("2 4 6 8 10");
+		double epsilon = 0.01;
+		RealArithmeticProgression a = RealArithmeticProgression.createAP(realArray, epsilon);
+		LOG.debug(a.toString());
+	}
+	
+	@Test
+	public void testDifferences() {
+		RealArray realArray = new RealArray("1 2 3 4 5  8 9 10  13 14 15 16");
+		Multiset<Double> diffs = realArray.createDoubleDifferenceMultiset(1);
+		List<Multiset.Entry<Double>> diffList = MultisetUtil.createDoubleListSortedByCount(diffs);
+		Assert.assertEquals("sorted", "[1.0 x 9, 3.0 x 2]", diffList.toString());
+		Multiset.Entry<Double> diff0 = diffList.get(0);
+		Assert.assertEquals("commonest", "1.0 x 9", diff0.toString());
+		Assert.assertEquals("commonest", 1.0, diff0.getElement(), 0.0001);
+		Assert.assertEquals("commonest", 9, diff0.getCount());
+		Assert.assertEquals("commonest", 1.0, realArray.getCommonestDifference(1), 0.01);
+		Multiset.Entry<Double> diff1 = diffList.get(1);
+		Assert.assertEquals("next", "3.0 x 2", diff1.toString());
+		Assert.assertEquals("next", 3.0, diff1.getElement(), 0.0001);
+		Assert.assertEquals("next", 2, diff1.getCount());
+		Assert.assertEquals("next", 3.0, realArray.getSecondCommonestDifference(1), 0.01);
+	}
+	
+	@Test
+	public void testCreateFromMultipleRealArrays1() {
+		RealArray realArray = new RealArray("1 2 3 4 5  8 9 10  13 14 15 16");
+		List<RealArray> realArrayList = realArray.createArithmeticProgressionList(0.1);
+		Assert.assertEquals("chunks", 3,  realArrayList.size());
+		Assert.assertEquals("chunk0", "(1.0,2.0,3.0,4.0,5.0)",  realArrayList.get(0).toString());
+		Assert.assertEquals("chunk1", "(8.0,9.0,10.0)",  realArrayList.get(1).toString());
+		Assert.assertEquals("chunk2", "(13.0,14.0,15.0,16.0)",  realArrayList.get(2).toString());
+	}
+
+	@Test
+	public void testCreateFromMultipleRealArrays2() {
+		RealArray realArray = new RealArray("1 2 3 4 5  8  19 20  28 29   33 34 35  37");
+		List<RealArray> realArrayList = realArray.createArithmeticProgressionList(0.1);
+		Assert.assertEquals("chunks", 4,  realArrayList.size());
+		Assert.assertEquals("chunk0", "(1.0,2.0,3.0,4.0,5.0)",  realArrayList.get(0).toString());
+		Assert.assertEquals("chunk1", "(19.0,20.0)",  realArrayList.get(1).toString());
+		Assert.assertEquals("chunk2", "(28.0,29.0)",  realArrayList.get(2).toString());
+		Assert.assertEquals("chunk3", "(33.0,34.0,35.0)",  realArrayList.get(3).toString());
+	}
+
+	@Test
+	public void testCreateFromMultipleRealArrays3() {
+		RealArray realArray = new RealArray("1.03 1.98 3.01 4.01 4.96  8.05  19.01 20.02  27.95 28.98   32.97 34.02 34.98  37.1");
+		List<RealArray> realArrayList = realArray.createArithmeticProgressionList(0.2);
+		Assert.assertEquals("chunks", 4,  realArrayList.size());
+		Assert.assertEquals("chunk0", "(1.03,1.98,3.01,4.01,4.96)",  realArrayList.get(0).toString());
+		Assert.assertEquals("chunk1", "(19.01,20.02)",  realArrayList.get(1).toString());
+		Assert.assertEquals("chunk2", "(27.95,28.98)",  realArrayList.get(2).toString());
+		Assert.assertEquals("chunk3", "(32.97,34.02,34.98)",  realArrayList.get(3).toString());
+	}
+
+	@Test
+	public void testCreateFromMultipleRealArrays4() {
+		RealArray realArray = new RealArray("1.1 1.9 3.0 4.1 5.0  8.1  19.1 20  27.9 29   33.1 34.1 34.9  37.1");
+		List<RealArray> realArrayList = realArray.createArithmeticProgressionList(0.2);
+		Assert.assertEquals("chunks", 3,  realArrayList.size());
+		Assert.assertEquals("chunk0", "(1.9,3.0,4.1,5.0)",  realArrayList.get(0).toString());
+		Assert.assertEquals("chunk1", "(27.9,29.0)",  realArrayList.get(1).toString());
+		Assert.assertEquals("chunk2", "(33.1,34.1)",  realArrayList.get(2).toString());
+	}
+
+
 }

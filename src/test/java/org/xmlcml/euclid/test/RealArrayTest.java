@@ -1326,5 +1326,14 @@ public class RealArrayTest {
 		Assert.assertEquals("chunk2", "(33.1,34.1)",  realArrayList.get(2).toString());
 	}
 
+	@Test
+	public void testCompressNearNeighbours() {
+		RealArray realArray = new RealArray("12.1 13.0 13.1 14.0 14.1 17.0");
+		Assert.assertEquals("raw", "(12.1,13.0,13.1,14.0,14.1,17.0)", realArray.toString());
+		Assert.assertEquals("raw size", 6, realArray.size());
+		RealArray realArray1 = realArray.compressNearNeighbours(0.2);
+		Assert.assertEquals("compressed", "(12.1,13.0,14.0,17.0)", realArray1.toString());
+	}
+	
 
 }

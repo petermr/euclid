@@ -122,7 +122,14 @@ public class Real2Range implements EuclidConstants {
         }
     }
 
-    /**
+    public static Real2Range createReal2Range(Int2Range int2Range) {
+    	Real2Range r2r = null;
+    	if (int2Range != null) {
+    		r2r = new Real2Range(new RealRange(int2Range.getXRange()), new RealRange(int2Range.getYRange()));
+    	}
+    	return r2r;
+	}
+	/**
      * reads in format of toString()
      * ((a,b)(c,d))
      * @param s

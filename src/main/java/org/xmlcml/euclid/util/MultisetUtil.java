@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.xmlcml.euclid.Int2Range;
 import org.xmlcml.xml.XMLUtil;
 
 import com.google.common.collect.ImmutableSortedMultiset;
@@ -54,6 +55,10 @@ public class MultisetUtil {
 
 	public static Iterable<Multiset.Entry<Object>> getObjectEntriesSortedByCount(Multiset<Object> objectSet) {
 		return Multisets.copyHighestCountFirst(objectSet).entrySet();
+	}
+
+	public static Iterable<Multiset.Entry<Int2Range>> getInt2RangeEntriesSortedByCount(Multiset<Int2Range> int2RangeSet) {
+		return Multisets.copyHighestCountFirst(int2RangeSet).entrySet();
 	}
 
 
@@ -119,6 +124,32 @@ public class MultisetUtil {
 		return entries;
 	}
 
+	/** gets list of iterables.
+	 * 
+	 * @param iterable
+	 * @return
+	 */
+	public static List<Entry<Object>> createObjectEntryList(Iterable<Entry<Object>> iterable) {
+		List<Entry<Object>> entries = new ArrayList<Entry<Object>>();
+		for (Entry<Object> entry : iterable) {
+			entries.add(entry);
+		}
+		return entries;
+	}
+
+	/** gets list of iterables.
+	 * 
+	 * @param iterable
+	 * @return
+	 */
+	public static List<Entry<Int2Range>> createInt2RangeEntryList(Iterable<Entry<Int2Range>> iterable) {
+		List<Entry<Int2Range>> entries = new ArrayList<Entry<Int2Range>>();
+		for (Entry<Int2Range> entry : iterable) {
+			entries.add(entry);
+		}
+		return entries;
+	}
+
 	public static List<Entry<Integer>> createIntegerListSortedByCount(Multiset<Integer> lengthSet) {
 		return MultisetUtil.createIntegerEntryList(MultisetUtil.getIntegerEntriesSortedByCount(lengthSet));
 	}
@@ -143,6 +174,14 @@ public class MultisetUtil {
 		return MultisetUtil.createStringEntryList(MultisetUtil.getEntriesSortedByValue(lengthSet));
 	}
 	
+	public static List<Entry<Object>> createObjectListSortedByCount(Multiset<Object> objectSet) {
+		return MultisetUtil.createObjectEntryList(MultisetUtil.getObjectEntriesSortedByCount(objectSet));
+	}
+
+	public static List<Entry<Int2Range>> createInt2RangeListSortedByCount(Multiset<Int2Range> int2RangeSet) {
+		return MultisetUtil.createInt2RangeEntryList(MultisetUtil.getInt2RangeEntriesSortedByCount(int2RangeSet));
+	}
+
 	public static Map<Integer, Integer> createIntegerFrequencyMap(Multiset<Integer> set) {
 		Map<Integer, Integer> countByInteger = new HashMap<Integer, Integer>();
 		for (Entry<Integer> entry : set.entrySet()) {

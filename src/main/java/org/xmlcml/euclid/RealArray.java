@@ -2388,6 +2388,40 @@ public class RealArray extends ArrayBase implements Iterable<Double> {
 		}
 		return realArrayList;
 	}
+	
+	/** iterates through array eliminating "almost equal" neighbours.
+	 * If two neighbouring elements are within epsilon, then one is removed
+	 * 
+	 * 12.1, 13.0, 13.1, 14.0, 14.1, 17 epsilon=0.2
+	 * gives
+	 * 12.1 13.0, 14.0, 17
+	 * 
+	 * probably not very efficient. Also if array consists of lost of nearly equal
+	 * elements the results may be unclear.
+	 * 
+	 * this realArray will normally be sorted
+	 * 
+	 * @param epsilon
+	 * @return new array
+	 */
+	 
+	 
+	public RealArray compressNearNeighbours(double epsilon) {
+		RealArray newArray = new RealArray();
+		int nn = 0;
+		if (this.nelem > 0) {
+			double last = array[nn++];
+			newArray.addElement(last);
+			for (int i = 1; i < nelem; i++) {
+				double xx = array[i];
+				if (!Real.isEqual(xx, last, epsilon)) {
+					newArray.addElement(xx);
+				}
+				last = xx;
+			}
+		}
+		return newArray;
+	}
 
 }
 class DoubleIterator implements Iterator<Double> {

@@ -56,11 +56,11 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
     /**
      * maximum of range
      */
-    protected double maxval;
+    protected Double maxval;
     /**
      * minimum of range
      */
-    protected double minval;
+    protected Double minval;
     /**
      * creates invalid range from POSITIVE_INFINITY to NEGATIVE_INFINITY
      */
@@ -264,7 +264,7 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
      * 
      * @return min
      */
-    public double getMin() {
+    public Double getMin() {
         return minval;
     }
     
@@ -273,7 +273,7 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
      * 
      * @return max
      */
-    public double getMax() {
+    public Double getMax() {
         return maxval;
     }
     
@@ -291,7 +291,7 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
      * 
      * @return range
      */
-    public double getRange() {
+    public Double getRange() {
         if (!isValid())
             return Double.NaN;
         return maxval - minval;
@@ -339,7 +339,7 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
      * 
      * @return number.
      */
-    public double getRandomVariate() {
+    public Double getRandomVariate() {
         double range = maxval - minval;
         return minval + Math.random() * range;
     }
@@ -494,19 +494,6 @@ public class RealRange implements EuclidConstants, Comparable<RealRange>  {
 		return  new RealRange(minval - minExtend, maxval + maxExtend);
 	}
 	
-//	public static RealRange createRange(String rangeString) {
-//		RealRange range = null;
-//		Matcher matcher =  RANGE_PATTERN.matcher(rangeString);
-//		if (matcher.matches()) {
-//			Double min = new Double(matcher.group(1));
-//			Double max = new Double(matcher.group(2));
-//			if (min <= max) {
-//				range = new RealRange(min, max);
-//			}
-//		}
-//		return range;
-//	}
-//	
 	/** interprets a String as an RealRange.
 	 * 
 	 * {m,n} is interpreted as RealRange(m,n)

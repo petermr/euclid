@@ -494,7 +494,7 @@ public class Real2Range implements EuclidConstants {
 
     
     public Dimension getDimension() {
-    	return new Dimension((int) getXRange().getRange(), (int) getYRange().getRange());
+    	return new Dimension((int) (double) getXRange().getRange(), (int) (double) getYRange().getRange());
     }
     
 	public Double getXMin() {

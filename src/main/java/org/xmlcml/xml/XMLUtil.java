@@ -1083,6 +1083,9 @@ public abstract class XMLUtil implements XMLConstants {
 	
 	public static Document parseQuietlyToDocument(InputStream is) {
 		Document document = null;
+		if (is == null) {
+			throw new RuntimeException("null input stream");
+		}
 		try {
 			document = new Builder().build(is);
 		} catch (Exception e) {

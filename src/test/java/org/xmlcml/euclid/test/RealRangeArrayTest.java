@@ -3,12 +3,18 @@ package org.xmlcml.euclid.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xmlcml.euclid.RealRange;
 import org.xmlcml.euclid.RealRangeArray;
 
 public class RealRangeArrayTest {
+	private static final Logger LOG = Logger.getLogger(RealRangeArrayTest.class);
+	static {
+		LOG.setLevel(Level.DEBUG);
+	}
 
 	private RealRange rr10_25 = new RealRange(10.1, 25.1);
 	private RealRange rr10_20 = new RealRange(10.1, 20.1);
@@ -102,7 +108,8 @@ public class RealRangeArrayTest {
 		array2.add(rr10_20);
 		Assert.assertFalse("order matters", array.equals(array2));
 		array2.sortAndRemoveOverlapping();
-		Assert.assertTrue("after sorting", array.equals(array2));
+		LOG.debug(array.toString() + "// "+array2.toString());
+		Assert.assertEquals("after sorting", array.toString(), array2.toString());
 	}
 	
 	@Test
@@ -121,7 +128,7 @@ public class RealRangeArrayTest {
 		ref.add(rr10_25);
 		ref.add(rr30_40);
 		ref.add(rr50_60);
-		Assert.assertTrue("after sorting", ref.equals(plus));
+		Assert.assertEquals("after sorting", ref.toString(), plus.toString());
 	}
 	
 	@Test
@@ -136,7 +143,7 @@ public class RealRangeArrayTest {
 		RealRangeArray ref = new RealRangeArray();
 		ref.add(new RealRange(20.1, 30.1));
 		ref.add(new RealRange(40.1, 50.1));
-		Assert.assertTrue("after sorting", ref.equals(inverse));
+		Assert.assertEquals("after sorting", ref.toString(), inverse.toString());
 	}
 	
 	@Test
@@ -179,7 +186,7 @@ public class RealRangeArrayTest {
 		Assert.assertEquals(1, inverse.size());
 		RealRangeArray ref = new RealRangeArray();
 		ref.add(new RealRange(0.1,100.1));
-		Assert.assertTrue("inverse", ref.equals(inverse));
+		Assert.assertEquals("inverse", ref.toString(), inverse.toString());
 	}
 	
 	@Test

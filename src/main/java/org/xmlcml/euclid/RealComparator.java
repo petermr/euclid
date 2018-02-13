@@ -22,6 +22,7 @@ public class RealComparator implements Comparator<Double> {
 	 */
 	public int compare(Double d0, Double d1) {
 		if (d0 == null || d1 == null) {
+			// THIS IS WRONG, it should throw NullPointer
 			return -1;
 		}
 		double delta = Math.abs(d0 - d1);

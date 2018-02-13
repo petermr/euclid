@@ -22,7 +22,6 @@ import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.xmlcml.euclid.Axis.Axis2;
-import org.xmlcml.euclid.Real2Range.BoxDirection;
 import org.xmlcml.euclid.RealRange.Direction;
 /**
  * 2-D double limits Contains two RealRanges. Can therefore be used to describe
@@ -233,10 +232,29 @@ public class Real2Range implements EuclidConstants {
      * @param r2
      * @return range
      * 
+     * @deprecated
      */
     public Real2Range intersectionWith(Real2Range r2) {
         if (!isValid() || r2 == null || !r2.isValid()) {
             return new Real2Range();
+        }
+        RealRange xr = this.getXRange().intersectionWith(r2.getXRange());
+        RealRange yr = this.getYRange().intersectionWith(r2.getYRange());
+        return (xr == null || yr == null) ? null : new Real2Range(xr, yr);
+    }
+    
+    /**
+     * intersect two ranges and take the range common to both; return invalid
+     * range if no overlap or either is null/invalid
+     * replaces the Deprecated #intersectionWith(Real2Range r2)
+     * 
+     * @param r2
+     * @return range
+     * 
+     */
+    public Real2Range getIntersectionWith(Real2Range r2) {
+        if (!isValid() || r2 == null || !r2.isValid()) {
+            return null;
         }
         RealRange xr = this.getXRange().intersectionWith(r2.getXRange());
         RealRange yr = this.getYRange().intersectionWith(r2.getYRange());

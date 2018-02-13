@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 /** comparator for use with TreeSet<Double> and other tools which normally require equals().
  * 
+ * seems to sort by requiring both xmin and xmax to be in same order
+ * 
  * @author pm286
  *
  */

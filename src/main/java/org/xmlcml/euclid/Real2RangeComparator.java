@@ -34,6 +34,7 @@ public class Real2RangeComparator implements Comparator<Real2Range> {
 	 */
 	public int compare(Real2Range r0, Real2Range r1) {
 		if (r0 == null || r1 == null) {
+			// THIS IS WRONG, should be NPE
 			return -1;
 		}
 		RealRange r0x = r0.getXRange();

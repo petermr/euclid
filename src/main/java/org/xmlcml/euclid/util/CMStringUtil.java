@@ -43,7 +43,8 @@ public class CMStringUtil {
 				for (String s : strings) {
 					matcher = explictPattern.matcher(s);
 					if (!matcher.matches() || matcher.groupCount() != 1) {
-						throw new RuntimeException(s+" does not fit pattern: "+explictPattern);
+						LOG.warn(s+" does not fit pattern: "+explictPattern);
+						continue;
 					}
 					Integer ii = new Integer(matcher.group(1));
 					if (stringByInteger.keySet().contains(ii)) {

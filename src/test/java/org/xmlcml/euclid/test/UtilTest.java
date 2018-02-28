@@ -843,4 +843,16 @@ public class UtilTest {
 		String ss = String.valueOf(space);
 		Assert.assertEquals("space",  " ", space);
 	}
+	
+	@Test
+	public void testIndexOfFirstDifferentChar() {
+		
+		Assert.assertEquals("abc xbc", 0, Util.indexOfFirstDiferentChar("abc", "xbc"));
+		Assert.assertEquals("abc abd", 2, Util.indexOfFirstDiferentChar("abc", "abd"));
+		Assert.assertEquals("abc abc", 3, Util.indexOfFirstDiferentChar("abc", "abc"));
+		Assert.assertEquals("abc abcd", 3, Util.indexOfFirstDiferentChar("abc", "abcd"));
+		Assert.assertEquals("null abc", 0, Util.indexOfFirstDiferentChar(null, "abc"));
+		Assert.assertEquals("null abc", 0, Util.indexOfFirstDiferentChar("", "abc"));
+
+	}
 }

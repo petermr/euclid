@@ -1376,6 +1376,9 @@ public abstract class XMLUtil implements XMLConstants {
 		return txt;
 	}
 
+	protected void removeAttributeWithName(String name) {
+	}
+
 	
 //	public static void removeElementsByXPath(Element elem, String xpath) {
 //		List<Element> elements = XMLUtil.getQueryElements(elem, xpath);

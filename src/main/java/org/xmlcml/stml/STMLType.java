@@ -1585,6 +1585,9 @@ public class STMLType implements XMLConstants {
 		return s;
 	}
 
+	protected void removeAttributeWithName(String name) {
+	}
+
 	/**
 	 * maps datatypes onto simpler values. mainly maps float, real, etc. to
 	 * XSD_FLOAT

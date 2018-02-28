@@ -614,6 +614,35 @@ public class Util implements EuclidConstants {
 		return -1;
 	}
 
+	/** finds first different character in strings.
+	 * null strings are treated as zero length.
+	 * end of string is treated as pseudo character
+	 * 
+	 * s1="abc" s2="abde" => 2
+	 * s1="abc" s2 = "abc" => 2
+	 * s1=null s2="abc" => 0
+	 * s1="abc" s2="abcd" = 3
+	 * 
+	 * @param s1
+	 * @param s2
+	 * @return 
+	 */
+	public final static int indexOfFirstDiferentChar(String s1, String s2) {
+		int index = 0;
+		if (s1 == null || s2 == null) {
+			return 0;
+		}
+		int l1 = s1.length();
+		int l2 = s2.length();
+		int min = Math.min(l1,l2);
+		for (;index < min; index++) {
+			if (s1.charAt(index) != s2.charAt(index)) {
+				return index;
+			}
+		}
+		return index;
+		
+	}
 	/**
 	 * parse comma-separated Strings Note fields can be EC.S_EMPTY (as in ,,,) and
 	 * fields can be quoted "...". If so, embedded quotes are represented as

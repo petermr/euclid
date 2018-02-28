@@ -784,5 +784,14 @@ public class Real2Range implements EuclidConstants {
 		t2.setTranslation(new Real2(xConstant, yConstant));
 		return t2;
 	}
+	/** is the largest Y of 1 less than the smallest Y of 2
+	 * i.e. no intersection
+	 * 
+	 * @param box2
+	 * @return
+	 */
+	public boolean hasAllYCompletelyLowerThan(Real2Range box2) {
+		return getYMax() < box2.getYMin();
+	}
 	
 }

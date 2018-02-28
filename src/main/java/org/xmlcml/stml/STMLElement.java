@@ -831,4 +831,7 @@ public class STMLElement extends Element implements XMLConstants {
         String content = this.getValue();
         return content;
     }
+
+	protected void removeAttributeWithName(String name) {
+	}
 }

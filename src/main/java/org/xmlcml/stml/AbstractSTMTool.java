@@ -16,9 +16,7 @@
 
 package org.xmlcml.stml;
 
-import org.xmlcml.xml.XMLConstants;
-
-
+import nu.xom.Element;
 
 /**
  * a hook for the Tool machinery
@@ -26,6 +24,9 @@ import org.xmlcml.xml.XMLConstants;
  * @author pmr
  * 
  */
-public abstract class AbstractSTMTool implements XMLConstants {
+public abstract class AbstractSTMTool {
+
+	protected void removeAttributeWithName(String name) {
+	}
 
 }

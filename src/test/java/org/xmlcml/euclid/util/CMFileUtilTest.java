@@ -51,12 +51,8 @@ public class CMFileUtilTest {
 				new File("/some/biff99z/foo33barx"),
 				new File("/some/biff99z/foo1bar"),
 		});
-		try {
-			sortedFiles = CMFileUtil.sortUniqueFilesByEmbeddedIntegers(files);
-			Assert.fail("Should throw Exception for inconsistent framework files");
-		} catch (RuntimeException e) {
-			Assert.assertEquals("foo33barx does not fit pattern: foo(\\d+)bar", e.getMessage());
-		}
+		sortedFiles = CMFileUtil.sortUniqueFilesByEmbeddedIntegers(files);
+		Assert.assertEquals(2, sortedFiles.size());
 		
 	}
 

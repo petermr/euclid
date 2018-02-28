@@ -39,20 +39,14 @@ public class CMStringUtilTest {
 		} catch (RuntimeException e) {
 			Assert.assertTrue(true);
 		}
-		// inconsistent strings fail
-		try {
-			strings = Arrays.asList(new String[] {
-					"foo5bar",
-					"foo33barx",
-					"foo1bar",
-			});
-			sortedStrings = CMStringUtil.sortUniqueStringsByEmbeddedIntegers(strings);
-			if (sortedStrings.size() != 0) {
-				Assert.fail("Should throw Exception for inconsistent framework strings");
-			}
-		} catch (RuntimeException e) {
-			Assert.assertTrue("threw", true);
-		}
+		// inconsistent strings
+		strings = Arrays.asList(new String[] {
+			"foo5bar",
+			"foo33barx",
+			"foo1bar",
+		});
+		sortedStrings = CMStringUtil.sortUniqueStringsByEmbeddedIntegers(strings);
+		Assert.assertEquals(2, sortedStrings.size());
 		
 	}
 }

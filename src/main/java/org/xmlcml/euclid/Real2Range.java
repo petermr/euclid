@@ -115,7 +115,8 @@ public class Real2Range implements EuclidConstants {
      * @param r
      */
     public Real2Range(Real2Range r) {
-        if (r.isValid()) {
+    
+        if (r != null && r.isValid()) {
             xrange = new RealRange(r.xrange);
             yrange = new RealRange(r.yrange);
         }

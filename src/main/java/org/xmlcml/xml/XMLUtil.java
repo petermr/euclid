@@ -45,6 +45,7 @@ import nu.xom.ProcessingInstruction;
 import nu.xom.Serializer;
 import nu.xom.Text;
 import nu.xom.XPathContext;
+import nu.xom.XPathException;
 import nu.xom.canonical.Canonicalizer;
 
 /**
@@ -121,8 +122,12 @@ public abstract class XMLUtil implements XMLConstants {
 		if (element == null) {
 			LOG.warn("Null element");
 		} else {
-			Nodes nodes = element.query(xpath, xPathContext);
-			s = (nodes.size() == 1) ? nodes.get(0).getValue() : null;
+			try {
+				Nodes nodes = element.query(xpath, xPathContext);
+				s = (nodes.size() == 1) ? nodes.get(0).getValue() : null;
+			} catch (XPathException e) {
+				throw new RuntimeException("Xpath: "+xpath, e);
+			}
 		}
 		return s;
 	}
@@ -139,8 +144,12 @@ public abstract class XMLUtil implements XMLConstants {
 		if (element == null) {
 			LOG.warn("Null element");
 		} else {
-			Nodes nodes = element.query(xpath);
-			s = (nodes.size() == 1) ? nodes.get(0).getValue() : null;
+			try {
+				Nodes nodes = element.query(xpath);
+				s = (nodes.size() == 1) ? nodes.get(0).getValue() : null;
+			} catch (XPathException e) {
+				throw new RuntimeException("Xpath: "+xpath, e);
+			}
 		}
 		return s;
 	}
@@ -158,8 +167,12 @@ public abstract class XMLUtil implements XMLConstants {
 		if (element == null) {
 			LOG.warn("Null element");
 		} else {
-			Nodes nodes = element.query(xpath, xPathContext);
-			s = (nodes.size() >= 1) ? nodes.get(0).getValue() : null;
+			try {
+				Nodes nodes = element.query(xpath, xPathContext);
+				s = (nodes.size() >= 1) ? nodes.get(0).getValue() : null;
+			} catch (XPathException e) {
+				throw new RuntimeException("Xpath: "+xpath, e);
+			}
 		}
 		return s;
 	}
@@ -173,8 +186,13 @@ public abstract class XMLUtil implements XMLConstants {
 	 * @return value if exactly 1 element (0 or many returns null)
 	 */
 	public static Element getSingleElement(Element element, String xpath, XPathContext xPathContext) {
-		Nodes nodes = element.query(xpath, xPathContext);
-		return (nodes.size() == 1) ? (Element) nodes.get(0) : null;
+		try {
+			Nodes nodes = element.query(xpath, xPathContext);
+			return (nodes.size() == 1) ? (Element) nodes.get(0) : null;
+		} catch (XPathException e) {
+			throw new RuntimeException("Xpath: "+xpath, e);
+		}
+
 	}
 	
 
@@ -387,9 +405,13 @@ public abstract class XMLUtil implements XMLConstants {
 			XPathContext context) {
 		List<Node> nodeList = new ArrayList<Node>();
 		if (node != null) {
-			Nodes nodes = node.query(xpath, context);
-			for (int i = 0; i < nodes.size(); i++) {
-				nodeList.add(nodes.get(i));
+			try {
+				Nodes nodes = node.query(xpath, context);
+				for (int i = 0; i < nodes.size(); i++) {
+					nodeList.add(nodes.get(i));
+				}
+			} catch (XPathException e) {
+				throw new RuntimeException("Xpath: "+xpath, e);
 			}
 		}
 		return nodeList;
@@ -1038,7 +1060,12 @@ public abstract class XMLUtil implements XMLConstants {
 	}
 	
 	public static Element getSingleElement(Element element, String xpath) {
-		Nodes nodes = element.query(xpath);
+		Nodes nodes;
+		try {
+			nodes = element.query(xpath);
+		} catch (XPathException e) {
+			throw new RuntimeException("Xpath: "+xpath, e);
+		}
 		return (nodes.size() == 1) ? (Element) nodes.get(0) : null;
 	}
 
